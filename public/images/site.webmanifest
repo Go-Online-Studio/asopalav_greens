@@ -1,0 +1,21 @@
+{
+  "name": "Asopalav_Greens_Banquet_And_Party_Plot",
+  "short_name": "Asopalav_Greens",
+  "icons": [
+    {
+      "src": "/images/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/images/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#fff2db",
+  "display": "standalone"
+}

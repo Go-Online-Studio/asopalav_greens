@@ -1,0 +1,205 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream-50: #FAF7F2;
+  --color-cream-100: #F3EDE2;
+  --color-cream-200: #EADFCF;
+  --color-gold-300: #E2CCA6;
+  --color-gold-400: #D4AF37;
+  --color-gold-500: #C5A880;
+  --color-gold-600: #A88B63;
+  --color-espresso-900: #38251D;
+  --color-espresso-950: #2A1C16;
+  --color-cognac-800: #5C3D2E;
+  --color-wine-900: #721B24;
+  --color-wine-950: #4A0E17;
+  --color-olive-900: #2F3E34;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-editorial: "Italiana", "Cormorant Garamond", Georgia, serif;
+  --font-display: "Cinzel", "Cormorant Garamond", serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+:root {
+  --nav-logo-h: 2.5rem; /* 40px default on mobile */
+  --nav-pad-y: 0.75rem; /* py-3 = 12px top and bottom */
+  --nav-pt: 0.75rem;    /* header pt-3 = 12px */
+  --nav-height: calc(var(--nav-logo-h) + (var(--nav-pad-y) * 2) + var(--nav-pt) + 2px);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --nav-logo-h: 3rem; /* 48px on sm screens */
+    --nav-height: calc(var(--nav-logo-h) + (var(--nav-pad-y) * 2) + var(--nav-pt) + 2px);
+  }
+}
+
+@layer base {
+  body {
+    background-color: #FAF7F2;
+    color: #2A1C16;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, .font-editorial {
+    font-family: var(--font-editorial);
+  }
+
+  .font-serif-luxury {
+    font-family: var(--font-serif);
+  }
+
+  .font-cinzel {
+    font-family: var(--font-display);
+  }
+}
+
+/* Custom luxury scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF7F2;
+}
+::-webkit-scrollbar-thumb {
+  background: #C5A880;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A88B63;
+}
+
+/* Lenis smooth scrolling rules */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Subtle gold hairline glow and borders */
+.border-gold-hairline {
+  border-color: rgba(197, 168, 128, 0.35);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #2A1C16 20%, #C5A880 70%, #5C3D2E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-accent-gradient {
+  background: linear-gradient(135deg, #D4AF37 0%, #C5A880 50%, #A88B63 100%);
+}
+
+.word-reveal-inner {
+  padding: 0 4px;
+}
+
+/* Masonry Gallery Grid Responsiveness & Device Space Flexibility */
+.masonry-grid {
+  width: 100%;
+  margin: 0 auto;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.masonry-grid.masonry-ready {
+  opacity: 1;
+}
+
+.masonry-grid-item {
+  width: 100%;
+  margin-bottom: 16px;
+  will-change: transform;
+}
+
+@media (min-width: 640px) {
+  .masonry-grid-item {
+    width: calc((100% - 16px) / 2);
+    margin-bottom: 18px;
+  }
+}
+
+@media (min-width: 768px) {
+  .masonry-grid-item {
+    width: calc((100% - 36px) / 3);
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .masonry-grid-item {
+    width: calc((100% - 48px) / 3);
+    margin-bottom: 24px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .masonry-grid-item {
+    width: calc((100% - 64px) / 3);
+    margin-bottom: 32px;
+  }
+}
+
+/* Fancybox Luxury Palette Theme */
+.fancybox__backdrop {
+  background: rgba(28, 19, 15, 0.94) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+.fancybox__toolbar {
+  background: linear-gradient(180deg, rgba(28, 19, 15, 0.8) 0%, transparent 100%) !important;
+  padding: 12px 16px !important;
+}
+
+.fancybox__button {
+  background: rgba(250, 247, 242, 0.08) !important;
+  color: #FAF7F2 !important;
+  border: 1px solid rgba(197, 168, 128, 0.3) !important;
+  border-radius: 9999px !important;
+  transition: all 0.2s ease !important;
+}
+
+.fancybox__button:hover {
+  background: #721B24 !important;
+  color: #FAF7F2 !important;
+  border-color: #D4AF37 !important;
+}
+
+.fancybox__caption {
+  background: linear-gradient(0deg, rgba(28, 19, 15, 0.95) 0%, rgba(28, 19, 15, 0.6) 70%, transparent 100%) !important;
+  color: #FAF7F2 !important;
+  padding: 16px 20px 24px !important;
+  font-family: inherit !important;
+}
+
+.fancybox__nav .fancybox__button {
+  width: 44px !important;
+  height: 44px !important;
+  background: rgba(42, 28, 22, 0.75) !important;
+  border: 1px solid rgba(197, 168, 128, 0.5) !important;
+}
+
+.fancybox__thumb {
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(197, 168, 128, 0.3) !important;
+}
+
+.fancybox__thumb.is-selected {
+  border-color: #D4AF37 !important;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5) !important;
+}
