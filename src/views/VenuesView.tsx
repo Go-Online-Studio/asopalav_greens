@@ -3,8 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { VENUES } from '../data/estateData';
-import { WordReveal } from '../utils/animations';
-import { ArrowUpRight, Check, Users, Maximize, FileText, Sparkles, MapPin } from 'lucide-react';
+import { ArrowUpRight, Users, Sparkles, Compass, Calendar, ArrowRight } from 'lucide-react';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -25,287 +24,325 @@ export const VenuesView: React.FC<VenuesViewProps> = ({
 
   useGSAP(
     () => {
-      // ── Word Reveal animations ──
-      const wordReveals = gsap.utils.toArray<HTMLElement>('.word-reveal');
-      wordReveals.forEach((el) => {
-        const inners = el.querySelectorAll('.word-reveal-inner');
-        if (!inners.length) return;
-        gsap.fromTo(
-          inners,
-          { y: '100%' },
-          {
-            y: '0%',
-            duration: 1,
-            ease: 'power4.out',
-            stagger: 0.06,
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 88%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-      });
+      // ── Header Masthead Reveal ──
+      gsap.fromTo(
+        '.masthead-element',
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.12,
+          ease: 'power3.out',
+        }
+      );
 
-      // ── Fade-in-up ──
-      const fadeUps = gsap.utils.toArray<HTMLElement>('.gsap-fade-up');
-      fadeUps.forEach((el) => {
-        gsap.fromTo(
-          el,
-          { y: 40, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.9,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 90%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-      });
+      // ── Scroll-Triggered Two-Column Magazine Rows ──
+      const venueRows = gsap.utils.toArray<HTMLElement>('.venue-magazine-row');
 
-      // ── Clip-path reveal for hero images ──
-      const clipReveals = gsap.utils.toArray<HTMLElement>('.gsap-clip-reveal');
-      clipReveals.forEach((el) => {
-        gsap.fromTo(
-          el,
-          { clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)' },
-          {
-            clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
-            duration: 1.2,
-            ease: 'power3.inOut',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-      });
+      venueRows.forEach((row, i) => {
+        const imageWrapper = row.querySelector<HTMLElement>('.magazine-image-wrapper');
+        const innerImage = row.querySelector<HTMLElement>('.magazine-inner-img');
+        const textCol = row.querySelector<HTMLElement>('.magazine-text-col');
+        const textElements = textCol ? textCol.querySelectorAll<HTMLElement>('.text-stagger-item') : [];
 
-      // ── Parallax images ──
-      const parallaxImgs = gsap.utils.toArray<HTMLElement>('.gsap-parallax-img');
-      parallaxImgs.forEach((img) => {
-        gsap.fromTo(
-          img,
-          { yPercent: -10 },
-          {
-            yPercent: 10,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: img.parentElement,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: true,
-            },
-          }
-        );
-      });
+        // Image Slide & Scale Reveal (No parallax shift to prevent blank spaces)
+        if (imageWrapper && innerImage) {
+          const isEven = i % 2 === 0;
 
-      // ── Scale-in for sidebar specs ──
-      const scaleIns = gsap.utils.toArray<HTMLElement>('.gsap-scale-in');
-      scaleIns.forEach((el) => {
-        gsap.fromTo(
-          el,
-          { y: 30, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.6,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 92%',
-              toggleActions: 'play none none none',
+          // Slide into view smoothly
+          gsap.fromTo(
+            imageWrapper,
+            {
+              x: isEven ? -40 : 40,
+              opacity: 0,
             },
-          }
-        );
-      });
+            {
+              x: 0,
+              opacity: 1,
+              duration: 1.1,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: row,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
 
-      // ── Stagger children ──
-      const staggerGroups = gsap.utils.toArray<HTMLElement>('.gsap-stagger');
-      staggerGroups.forEach((group) => {
-        const children = group.children;
-        gsap.fromTo(
-          children,
-          { y: 20, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.6,
-            stagger: 0.08,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: group,
-              start: 'top 88%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
+          // Subtle image scale effect from 1.08 to 1.0
+          gsap.fromTo(
+            innerImage,
+            { scale: 1.08 },
+            {
+              scale: 1.0,
+              duration: 1.3,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: row,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        }
+
+        // Sequential Text Fade-In on the other side
+        if (textElements.length > 0) {
+          gsap.fromTo(
+            textElements,
+            { y: 35, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.85,
+              stagger: 0.1,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: row,
+                start: 'top 78%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        }
       });
     },
     { scope: containerRef }
   );
 
+  const scrollToVenue = (slug: string) => {
+    const el = document.getElementById(`space-${slug}`);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <div ref={containerRef} className="w-full bg-[#FAF7F2] text-[#2A1C16] min-h-screen">
-      {/* Editorial Header */}
-      <section className="pt-12 sm:pt-20 pb-12 px-4 sm:px-8 max-w-7xl mx-auto border-b border-[#C5A880]/30">
-        <div className="space-y-4 max-w-4xl">
-          <div className="gsap-fade-up flex items-center gap-2 text-xs font-mono text-[#721B24] tracking-[0.25em] uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#721B24]" />
-            ESTATE CATALOG NO. 2026–2027
+      {/* ── 1. Minimalist Editorial Masthead ── */}
+      <section className="pt-10 sm:pt-16 pb-12 sm:pb-16 px-4 sm:px-8 max-w-7xl mx-auto border-b border-[#C5A880]/30">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-8">
+          <div className="space-y-4 max-w-3xl">
+            <div className="masthead-element flex items-center gap-3 text-xs font-mono text-[#721B24] tracking-[0.25em] uppercase">
+              <span className="w-2 h-2 rounded-full bg-[#721B24]" />
+              ESTATE REPERTOIRE • VOLUME 2026–2027
+            </div>
+
+            <h1 className="masthead-element text-4xl sm:text-6xl lg:text-7xl font-serif text-[#2A1C16] font-light leading-[1.05] tracking-tight">
+              THE SPACES
+              <span className="block italic font-normal text-[#5C3D2E] text-3xl sm:text-5xl lg:text-6xl mt-1">
+                &amp; Architectural Sanctums
+              </span>
+            </h1>
+
+            <p className="masthead-element text-base sm:text-lg text-[#5C3D2E] font-sans font-light leading-relaxed max-w-2xl">
+              Three singular environments shaped for monumental celebrations, pristine sightlines,
+              and intimate ceremonial rituals. Focused on scale, natural light, and refined hospitality.
+            </p>
           </div>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif text-[#2A1C16] font-light leading-[1.08]">
-            <WordReveal text="THE SPATIAL" />{' '}
-            <span className="italic font-normal"><WordReveal text="REALMS" /></span>
-          </h1>
-          <p className="gsap-fade-up text-base sm:text-lg text-[#5C3D2E] font-sans font-light leading-relaxed max-w-2xl">
-            A visual portfolio of Asopalav Greens' three premier event sanctums. Each meticulously designed for architectural presence, acoustic isolation, and seamless patron flow.
-          </p>
+
+          {/* Quick Index Anchors */}
+          <div className="masthead-element flex flex-wrap md:flex-col gap-2 md:items-end text-xs font-mono">
+            <span className="text-[10px] uppercase tracking-widest text-[#5C3D2E]/70 mb-1">
+              JUMP TO SANCTUARY
+            </span>
+            {VENUES.map((v, i) => (
+              <button
+                key={v.slug}
+                onClick={() => scrollToVenue(v.slug)}
+                className="px-3.5 py-1.5 rounded-full border border-[#C5A880]/40 text-[#2A1C16] hover:bg-[#721B24] hover:text-[#FAF7F2] hover:border-[#721B24] transition-all cursor-pointer text-left flex items-center gap-2 group"
+              >
+                <span className="text-[#721B24] group-hover:text-[#FAF7F2] font-semibold">
+                  0{i + 1}
+                </span>
+                <span className="font-sans font-medium tracking-normal text-xs">{v.name}</span>
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Alternating Full-Width Photo Rows */}
-      <section className="py-12 sm:py-20 px-4 sm:px-8 max-w-7xl mx-auto space-y-24 sm:space-y-36">
+      {/* ── 2. Scroll-Triggered Two-Column Magazine Presentation ── */}
+      <section className="py-10 sm:py-16 px-4 sm:px-8 max-w-7xl mx-auto space-y-16 sm:space-y-24">
         {VENUES.map((venue, idx) => {
-          const isReversed = idx % 2 === 1;
+          const isEven = idx % 2 === 0;
+          const chapterNumber = `0${idx + 1}`;
 
           return (
             <div
               key={venue.slug}
-              className={`flex flex-col ${
-                isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
-              } gap-8 lg:gap-12 items-start`}
+              id={`space-${venue.slug}`}
+              className={`venue-magazine-row flex flex-col ${
+                isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
+              } gap-10 lg:gap-14 items-center scroll-mt-28`}
             >
-              {/* 70% Visual Panel — clip-path reveal + parallax */}
-              <div className="gsap-clip-reveal w-full lg:w-[68%] rounded-3xl overflow-hidden border border-[#C5A880]/40 bg-[#2A1C16] shadow-2xl relative group">
-                <div className="relative h-[420px] sm:h-[540px] lg:h-[640px] w-full overflow-hidden">
+              {/* ── Column A: Large, Full-Height Image (Slides in with subtle scale) ── */}
+              <div className="w-full lg:w-[56%]">
+                <div
+                  onClick={() => onSelectVenue(venue.slug)}
+                  className="magazine-image-wrapper group relative h-[420px] sm:h-[500px] lg:h-[580px] rounded-[24px] sm:rounded-[32px] overflow-hidden border border-[#C5A880]/40 bg-[#2A1C16] shadow-xl cursor-pointer"
+                >
                   <img
                     src={venue.heroImage}
                     alt={venue.name}
-                    className="gsap-parallax-img w-full h-full object-cover object-center scale-[1.2] will-change-transform"
+                    className="magazine-inner-img w-full h-full object-cover object-center will-change-transform transition-transform duration-700 group-hover:scale-[1.04]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#2A1C16]/90 via-transparent to-[#2A1C16]/20" />
 
-                  {/* Overlaid Badges */}
-                  <div className="absolute top-6 left-6 flex items-center gap-3">
-                    <span className="px-4 py-1.5 rounded-full bg-[#2A1C16]/80 backdrop-blur-md border border-[#C5A880]/50 text-[#D4AF37] font-serif text-sm tracking-widest">
-                      REALM {venue.numeral}
-                    </span>
-                    <span className="px-3.5 py-1 rounded-full bg-[#721B24] text-[#FAF7F2] text-[10px] font-mono tracking-widest uppercase">
-                      {venue.areaSqFt.toLocaleString()} SQ. FT.
+                  {/* Editorial Film Vignette */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#2A1C16]/90 via-[#2A1C16]/20 to-transparent pointer-events-none" />
+
+                  {/* Overlaid Magazine Folio Badges */}
+                  <div className="absolute top-6 left-6 right-6 flex items-center justify-between pointer-events-none">
+                    <div className="flex items-center gap-2.5">
+                      <span className="px-4 py-1.5 rounded-full bg-[#FAF7F2]/95 backdrop-blur-md text-[#2A1C16] font-mono text-xs tracking-widest uppercase shadow-md font-semibold">
+                        SANCTUARY {venue.numeral}
+                      </span>
+                    </div>
+
+                    <span className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#2A1C16]/75 backdrop-blur-md text-[#FAF7F2] text-[11px] font-mono tracking-wider border border-[#C5A880]/30">
+                      <Sparkles className="w-3 h-3 text-[#D4AF37]" />
+                      EDITORIAL LOOKBOOK
                     </span>
                   </div>
 
-                  {/* Image Bottom Caption */}
-                  <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between text-[#FAF7F2]">
-                    <div className="max-w-md">
-                      <div className="text-xs font-mono text-[#D4AF37] tracking-widest uppercase mb-1">
-                        ARCHITECTURAL AMBIENCE
+                  {/* Image Bottom Ambiance Caption & Micro-CTA */}
+                  <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between gap-4 text-[#FAF7F2]">
+                    <div className="max-w-md space-y-1">
+                      <div className="text-[10px] font-mono text-[#D4AF37] tracking-[0.2em] uppercase">
+                        ATMOSPHERIC ESSENCE
                       </div>
-                      <div className="text-lg sm:text-xl font-serif font-light leading-snug">
+                      <p className="text-base sm:text-lg font-serif font-light leading-snug line-clamp-2">
                         {venue.tagline}
-                      </div>
+                      </p>
                     </div>
 
-                    <button
-                      onClick={() => onSelectVenue(venue.slug)}
-                      className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#FAF7F2]/90 hover:bg-[#FAF7F2] text-[#2A1C16] text-xs font-medium uppercase tracking-widest transition-all cursor-pointer shadow-lg"
-                    >
-                      <span>Explore Lookbook</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 text-[#721B24]" />
-                    </button>
-                  </div>
-                </div>
-
-                {/* Diptych teaser strip */}
-                <div className="p-4 bg-[#F3EDE2] border-t border-[#C5A880]/30 grid grid-cols-2 gap-4">
-                  <div className="flex items-center gap-3">
-                    <img
-                      src={venue.diptych[0]}
-                      alt="Diptych detail 1"
-                      className="w-16 h-12 rounded-lg object-cover border border-[#C5A880]/40"
-                    />
-                    <div className="text-xs font-mono text-[#5C3D2E]">
-                      <div className="font-semibold text-[#2A1C16]">DIPTYCH VIEW 01</div>
-                      <div className="text-[10px]">Staging & Lighting Rig</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <img
-                      src={venue.diptych[1]}
-                      alt="Diptych detail 2"
-                      className="w-16 h-12 rounded-lg object-cover border border-[#C5A880]/40"
-                    />
-                    <div className="text-xs font-mono text-[#5C3D2E]">
-                      <div className="font-semibold text-[#2A1C16]">DIPTYCH VIEW 02</div>
-                      <div className="text-[10px]">Tablescape & Atmosphere</div>
+                    <div className="shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#FAF7F2] text-[#2A1C16] text-xs font-semibold uppercase tracking-wider group-hover:bg-[#721B24] group-hover:text-[#FAF7F2] transition-colors shadow-lg">
+                      <span className="hidden sm:inline">View Details</span>
+                      <ArrowUpRight className="w-4 h-4 text-[#721B24] group-hover:text-[#FAF7F2] transition-colors" />
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* 30% Sticky Spec Sidebar */}
-              <div className="w-full lg:w-[32%] lg:sticky lg:top-24 space-y-6">
-                <div className="space-y-2 border-b border-[#C5A880]/30 pb-4">
-                  <div className="gsap-fade-up text-xs font-mono text-[#5C3D2E] tracking-[0.25em] uppercase">
-                    {venue.subtitle}
-                  </div>
-                  <h2 className="text-3xl font-serif text-[#2A1C16] font-light leading-snug">
-                    <WordReveal text={venue.name} />
+              {/* ── Column B: Sequential Fade-in Magazine Text ── */}
+              <div className="magazine-text-col w-full lg:w-[42%] space-y-6 lg:py-4">
+                {/* 1. Folio Chapter & Category */}
+                <div className="text-stagger-item flex items-center gap-2 text-xs font-mono text-[#721B24] tracking-[0.25em] uppercase">
+                  <span>CHAPTER {chapterNumber}</span>
+                  <span className="text-[#C5A880]">•</span>
+                  <span>ASOPALAV GREENS</span>
+                </div>
+
+                {/* 2. Venue Headline */}
+                <div className="text-stagger-item space-y-2">
+                  <h2 className="text-3xl sm:text-5xl font-serif text-[#2A1C16] font-light leading-[1.08] tracking-tight">
+                    {venue.name}
                   </h2>
-                  <p className="gsap-fade-up text-xs sm:text-sm text-[#5C3D2E] font-sans font-light leading-relaxed">
-                    {venue.description}
+                  <p className="text-sm font-mono text-[#5C3D2E] tracking-wider uppercase">
+                    {venue.ambianceSubtitle || venue.subtitle}
                   </p>
                 </div>
 
-                {/* Technical spec cards with stagger */}
-                <div className="gsap-stagger space-y-2.5">
-                  <div className="text-xs font-mono text-[#721B24] tracking-widest uppercase">
-                    TECHNICAL PARAMETERS
+                {/* 3. Essential Capacity Focal Callout (NO square footage!) */}
+                <div className="text-stagger-item p-5 rounded-2xl bg-[#F3EDE2] border border-[#C5A880]/40 space-y-3">
+                  <div className="flex items-center gap-2 text-[10px] font-mono text-[#721B24] uppercase tracking-widest font-semibold">
+                    <Users className="w-3.5 h-3.5" />
+                    <span>GUEST CAPACITY &amp; SCALE</span>
                   </div>
 
-                  {venue.specs.map((spec, sIdx) => (
-                    <div
-                      key={sIdx}
-                      className="p-3 rounded-xl bg-[#F3EDE2] border border-[#C5A880]/30 flex items-center justify-between text-xs font-mono"
-                    >
-                      <div className="space-y-0.5">
-                        <div className="text-[#2A1C16] font-medium">{spec.label}</div>
-                        {spec.note && (
-                          <div className="text-[10px] text-[#5C3D2E]/70">{spec.note}</div>
-                        )}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <div className="text-2xl sm:text-3xl font-serif text-[#2A1C16] font-normal leading-none">
+                        {venue.capacityFloating.toLocaleString()}
                       </div>
-                      <div className="font-bold text-[#721B24] text-right">{spec.value}</div>
+                      <div className="text-[11px] font-mono text-[#5C3D2E] uppercase tracking-wider mt-1">
+                        Floating Guests
+                      </div>
                     </div>
-                  ))}
+
+                    <div>
+                      <div className="text-2xl sm:text-3xl font-serif text-[#721B24] font-normal leading-none">
+                        {venue.capacitySeated.toLocaleString()}
+                      </div>
+                      <div className="text-[11px] font-mono text-[#5C3D2E] uppercase tracking-wider mt-1">
+                        Banquet Seating
+                      </div>
+                    </div>
+                  </div>
+
+                  {venue.celebrationStyle && (
+                    <div className="pt-2 border-t border-[#C5A880]/30 text-xs font-sans text-[#2A1C16] font-medium flex items-center gap-2">
+                      <span className="text-[#721B24]">✦</span>
+                      <span>{venue.celebrationStyle}</span>
+                    </div>
+                  )}
                 </div>
 
-                {/* Action CTA */}
-                <div className="gsap-fade-up pt-2 space-y-3">
+                {/* 4. Evocative Ambiance Narrative */}
+                <p className="text-stagger-item text-sm sm:text-base text-[#5C3D2E] font-sans font-light leading-relaxed">
+                  {venue.description}
+                </p>
+
+                {/* 5. Minimal Ambiance Essence Points (Clean experience focus) */}
+                {venue.essencePoints && venue.essencePoints.length > 0 && (
+                  <ul className="text-stagger-item space-y-2 text-xs sm:text-sm text-[#2A1C16]/90 font-sans border-l-2 border-[#721B24]/40 pl-4 py-1">
+                    {venue.essencePoints.map((point, pIdx) => (
+                      <li key={pIdx} className="leading-snug">
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {/* 6. Magazine Action Buttons */}
+                <div className="text-stagger-item pt-2 flex flex-col sm:flex-row gap-3">
                   <button
                     onClick={() => onSelectVenue(venue.slug)}
-                    className="w-full py-3.5 rounded-full bg-[#2A1C16] hover:bg-[#721B24] text-[#FAF7F2] text-xs uppercase tracking-widest font-medium transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg"
+                    className="flex-1 py-3.5 px-6 rounded-full bg-[#2A1C16] hover:bg-[#721B24] text-[#FAF7F2] text-xs uppercase tracking-widest font-medium transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg hover:shadow-xl hover:scale-[1.02]"
                   >
-                    <span>Explore Realm Details & Gallery</span>
-                    <ArrowUpRight className="w-4 h-4 text-[#C5A880]" />
+                    <span>Explore Space</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-[#C5A880]" />
                   </button>
 
                   <button
                     onClick={() => onOpenInquiry(venue.name)}
-                    className="w-full py-3 rounded-full border border-[#721B24] text-[#721B24] hover:bg-[#721B24] hover:text-[#FAF7F2] text-xs uppercase tracking-widest font-semibold transition-all cursor-pointer"
+                    className="py-3.5 px-6 rounded-full border border-[#721B24] text-[#721B24] hover:bg-[#721B24] hover:text-[#FAF7F2] text-xs uppercase tracking-widest font-semibold transition-all cursor-pointer text-center"
                   >
-                    Reserve Dates for This Realm
+                    Reserve Dates
                   </button>
                 </div>
               </div>
             </div>
           );
         })}
+      </section>
+
+      {/* ── 3. Exclusive Full Estate Buyout Repertoire ── */}
+      <section className="py-12 sm:py-20 px-4 sm:px-8 max-w-7xl mx-auto border-t border-[#C5A880]/30">
+        <div className="p-8 sm:p-12 rounded-3xl bg-[#2A1C16] text-[#FAF7F2] border border-[#C5A880]/40 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+          <div className="space-y-3 text-center md:text-left max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#721B24] text-[#FAF7F2] text-[10px] font-mono uppercase tracking-widest">
+              <Sparkles className="w-3 h-3 text-[#D4AF37]" />
+              EXCLUSIVE PRIVILEGE
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-serif font-light text-[#FAF7F2]">
+              Grand Estate Buyout Repertoire
+            </h3>
+            <p className="text-xs sm:text-sm text-[#F3EDE2]/80 font-sans font-light leading-relaxed">
+              Combine all three architectural sanctuaries for monumental multi-day destination weddings.
+              Accommodates over 4,000 celebration guests with complete privacy, simultaneous ceremonial venues,
+              and dedicated estate concierge staffing.
+            </p>
+          </div>
+
+          <button
+            onClick={() => onOpenInquiry('Complete Estate Exclusive Buyout')}
+            className="shrink-0 px-8 py-3.5 rounded-full bg-[#721B24] hover:bg-[#58151C] text-[#FAF7F2] text-xs uppercase tracking-widest font-semibold border border-[#C5A880]/40 transition-all cursor-pointer shadow-xl hover:scale-105"
+          >
+            Inquire Full Estate Buyout
+          </button>
+        </div>
       </section>
     </div>
   );

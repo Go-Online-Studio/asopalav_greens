@@ -18,6 +18,20 @@ export interface Venue {
   }[];
   highlights: string[];
   floorplanPdfName: string;
+  // Editorial & Magazine additions
+  ambianceSubtitle?: string;
+  celebrationStyle?: string;
+  editorialQuote?: string;
+  essencePoints?: string[];
+  dayToNightPhases?: {
+    time: string;
+    title: string;
+    description: string;
+  }[];
+  hospitalityHighlights?: {
+    title: string;
+    description: string;
+  }[];
 }
 
 export const VENUES: Venue[] = [
@@ -26,6 +40,9 @@ export const VENUES: Venue[] = [
     numeral: 'I.',
     name: 'The Grand Royal Lawn',
     subtitle: '45,000 Sq. Ft. of Sculpted Velvet Flora',
+    ambianceSubtitle: 'Sculpted Velvet Flora & Open Horizons',
+    celebrationStyle: 'Grand Sangeet, Monolithic Weddings & Royal Receptions',
+    editorialQuote: 'A monumental open-air sanctuary where Vadodara’s starry sky becomes the canopy for Gujarat’s grandest celebrations.',
     tagline: 'Vadodara’s crown open-air venue engineered for monolithic ceremonies and grand spectacles.',
     description: 'A vast expanse of natural carpeted turf framed by ancient asopalav foliage and architectural perimeter lighting. Designed with a gentle natural slope for panoramic sightlines and heavy stage reinforcement.',
     capacityFloating: 3000,
@@ -36,6 +53,22 @@ export const VENUES: Venue[] = [
     diptych: [
       'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1600&q=85',
       'https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1600&q=85'
+    ],
+    essencePoints: [
+      'Sculpted Bermuda velvet turf framed by mature asopalav canopy and warm perimeter illumination',
+      'Gentle natural gradient engineered for panoramic, unobstructed sightlines from every tier',
+      'Dedicated 60-foot baraat processional avenue and direct VIP bridal suite pathway'
+    ],
+    dayToNightPhases: [
+      { time: 'Afternoon (4:00 PM)', title: 'Sunlit Vows & Natural Flora', description: 'Gentle golden light filtering through heritage foliage, creating a serene, open-air garden ambiance.' },
+      { time: 'Sunset (6:30 PM)', title: 'The Golden Hour Horizon', description: 'Dramatic amber skylines reflected across pristine turf as architectural warm uplighting begins to illuminate.' },
+      { time: 'Twilight & Night (8:00 PM+)', title: 'The Starlit Royal Soirée', description: 'Atmospheric canopy illumination, fairy lighting, and concert-grade acoustic staging under the stars.' }
+    ],
+    hospitalityHighlights: [
+      { title: 'Dedicated VIP Bridal Salon', description: 'Private en-suite dressing lounge with climate control and direct discrete walkway.' },
+      { title: 'Processional Baraat Avenue', description: 'A grand 60-foot tree-lined approach with architectural arrival gates.' },
+      { title: 'Seamless Guest Valet Bay', description: 'Expansive paved ingress and egress designed for 500+ vehicles with zero bottleneck.' },
+      { title: '100% Step-Free Accessibility', description: 'Smooth paved pathways and direct wheelchair-friendly access throughout the grounds.' }
     ],
     specs: [
       { label: 'Ground Footprint', value: '45,000 Sq. Ft.', note: 'Bermuda Hybrid Lawn' },
@@ -61,6 +94,9 @@ export const VENUES: Venue[] = [
     numeral: 'II.',
     name: 'The Crystal Pillarless Hall',
     subtitle: '18,000 Sq. Ft. of Climate-Controlled Opulence',
+    ambianceSubtitle: 'Pillarless Grandeur & Crystal Opulence',
+    celebrationStyle: 'Opulent Dinners, Indoor Sangeet & High-Fashion Galas',
+    editorialQuote: 'Completely devoid of internal pillars, offering 1,200 guests an uninterrupted vista beneath soaring Austrian crystal chandeliers.',
     tagline: 'A monumental architectural sanctuary with 28-foot soaring ceilings and Austrian crystal chandeliers.',
     description: 'Completely devoid of internal load-bearing pillars, offering unobstructed sightlines for up to 1,200 celebration guests. Features imported acoustic wall upholstery and Italian botticino marble foyer.',
     capacityFloating: 1200,
@@ -71,6 +107,22 @@ export const VENUES: Venue[] = [
     diptych: [
       'https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1600&q=85',
       'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1600&q=85'
+    ],
+    essencePoints: [
+      'Monumental 28-foot clear-span ceiling devoid of internal pillars for unobstructed vistas',
+      'Fourteen cascading tiers of dimmable Austrian crystal chandeliers and Italian marble foyer',
+      'Acoustically calibrated wall upholstery delivering concert-grade clarity for live orchestras'
+    ],
+    dayToNightPhases: [
+      { time: 'Daylight Ceremonies', title: 'Illuminated Marble Elegance', description: 'Natural daylight streams through grand glass portals reflecting off polished Botticino marble.' },
+      { time: 'Evening Reception', title: 'Austrian Crystal Radiance', description: 'Fourteen chandeliers dim into warm amber tones, casting an opulent golden glow across the hall.' },
+      { time: 'Midnight Revelry', title: 'Atmospheric Dynamic Moods', description: 'Intelligent warm cove lighting creates a dynamic, high-energy party atmosphere with flawless acoustics.' }
+    ],
+    hospitalityHighlights: [
+      { title: 'Pillar-Free Sightlines', description: 'Every single guest enjoys an unhindered vantage point of the primary stage and dais.' },
+      { title: 'Twin En-Suite Dressing Salons', description: 'Two fully appointed royal green rooms with private restrooms and makeup vanities.' },
+      { title: 'Covered Portico Arrival', description: 'Weather-shielded motor court drop-off ensuring seamless arrivals in any season.' },
+      { title: 'Discrete Service Ingress', description: 'Subterranean corridors allowing waitstaff to serve tables effortlessly without disturbing the festivities.' }
     ],
     specs: [
       { label: 'Internal Ceiling Height', value: '28 Ft. Clear Span', note: 'Zero interior pillars' },
@@ -96,6 +148,9 @@ export const VENUES: Venue[] = [
     numeral: 'III.',
     name: 'The Courtyard & Mandap Grove',
     subtitle: 'Sacred Water Pavilions & Intimate Twilight Rituals',
+    ambianceSubtitle: 'Sacred Water Pavilions & Twilight Rituals',
+    celebrationStyle: 'Vedic Pheras, Sunset Haldi & Intimate Twilight Soirées',
+    editorialQuote: 'Surrounded by twin reflection lily pools and sandstone jalis, traditional chants and shehnai echo with serene majesty.',
     tagline: 'An ethereal ceremonial courtyard designed for Vedic pheras, sunset haldi, and royal twilight soirees.',
     description: 'Surrounded by twin reflection lily pools, handcrafted sandstone jalis, and century-old asopalav trees. The acoustics are engineered so traditional shehnai and Vedic chants resonate with serene majesty.',
     capacityFloating: 600,
@@ -106,6 +161,22 @@ export const VENUES: Venue[] = [
     diptych: [
       'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=2000&q=85',
       'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1600&q=85'
+    ],
+    essencePoints: [
+      'Intimate amphitheater seating framing a floating ceremonial stage over twin reflection pools',
+      'Strict East-facing Vedic orientation designed according to traditional Vastu principles',
+      'Natural botanical canopy of 40-year-old native asopalav and fragrant champa trees'
+    ],
+    dayToNightPhases: [
+      { time: 'Morning & Haldi (10:00 AM)', title: 'Fragrant Champa Sanctuary', description: 'Sun-dappled floral courtyards perfumed with fresh marigold, mogra, and gentle breezes.' },
+      { time: 'Sunset Pheras (5:30 PM)', title: 'Sacred Water Reflection', description: 'Floating earthen diyas across twin water lily pools catching the setting sun during the sacred vows.' },
+      { time: 'Candlelit Night (8:00 PM)', title: 'Warm Sandstone Glow', description: 'Hundreds of artisan wax tapers reflecting off hand-carved jali screens and quiet pools.' }
+    ],
+    hospitalityHighlights: [
+      { title: 'Floating Floral Mandap', description: 'Raised ceremonial sanctum suspended directly over serene reflection water elements.' },
+      { title: 'Engineered Smokeless Havankund', description: 'Acoustically quiet ventilation ducts designed to extract ritual smoke smoothly.' },
+      { title: 'Covered Direct Connectivity', description: 'Shielded walkways connecting effortlessly to both the bridal suite and the banquet foyer.' },
+      { title: 'Vedic Amphitheater Sightlines', description: 'Tiered, intimate seating ensuring all 350 ceremony guests witness every sacred ritual.' }
     ],
     specs: [
       { label: 'Ceremonial Area', value: '12,000 Sq. Ft.', note: 'Hand-carved sandstone' },
