@@ -376,7 +376,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenInquiry })
             </h2>
 
             <p className="gsap-fade-up text-sm sm:text-base text-[#F3EDE2]/90 font-sans font-light leading-relaxed max-w-xl mx-auto">
-              Private estate walk-throughs and auspicious date reservations for the 2026–2027 wedding seasons are now accepting patron inscriptions. Open daily until 7:00 PM.
+              Private estate walk-throughs and auspicious date reservations for the 2026–2027 wedding seasons are now accepting patron inscriptions. Office hours: 9:30 AM – 7:00 PM (Daily).
             </p>
 
             <div className="gsap-fade-up pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -396,7 +396,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenInquiry })
             </div>
 
             <div className="gsap-fade-up pt-6 text-xs font-mono text-[#D4AF37]/80">
-              Sevasi - Canal Rd, opp. Athletes Arena, near Jalsa Apartment, Vadodara • Concierge: +91 81550 89958 (081550 89958)
+              Sevasi - Canal Rd, opp. Athletes Arena, near Jalsa Apartment, Vadodara • Concierge: <a href="tel:+918155089958" className="hover:underline text-[#FAF7F2]">+91&nbsp;81550&nbsp;89958</a>&nbsp;/&nbsp;<a href="tel:+919898563788" className="hover:underline text-[#FAF7F2]">+91&nbsp;98985&nbsp;63788</a>
             </div>
           </div>
         </div>

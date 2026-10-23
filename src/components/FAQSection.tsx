@@ -19,7 +19,7 @@ export const FAQS: FAQItem[] = [
   {
     question: 'How can I book a banquet hall or lawn at Asopalav Greens?',
     answer:
-      'You can get in touch with our estate concierge directly by calling +91 81550 89958 / 081550 89958, sending a WhatsApp message, or completing the online inquiry dossier. Our booking concierge is available daily (estate visits open until 7:00 PM, with 24/7 digital and phone inquiry support) to check auspicious dates and reserve your celebration.',
+      'You can get in touch with our estate concierge directly by calling +91 81550 89958 / +91 98985 63788, sending a WhatsApp message, or completing the online inquiry dossier. Our booking concierge is available daily during office hours (9:30 AM – 7:00 PM, with 24/7 digital and phone inquiry support) to check auspicious dates and reserve your celebration.',
     category: 'Reservations',
   },
   {
@@ -37,7 +37,7 @@ export const FAQS: FAQItem[] = [
   {
     question: 'Can I personally visit Asopalav Greens Banquet & Party Plot before booking?',
     answer:
-      'Yes, absolutely. We warmly welcome prospective couples, families, and wedding planners for private curated walk-throughs to personally inspect the grounds, lighting infrastructure, banquet halls, and backstage amenities. Walk-throughs are hosted daily until 7:00 PM by prior appointment.',
+      'Yes, absolutely. We warmly welcome prospective couples, families, and wedding planners for private curated walk-throughs to personally inspect the grounds, lighting infrastructure, banquet halls, and backstage amenities. Walk-throughs are hosted daily from 9:30 AM to 7:00 PM by prior appointment.',
     category: 'Visits',
   },
   {
@@ -49,7 +49,7 @@ export const FAQS: FAQItem[] = [
   {
     question: 'How can I contact Asopalav Greens Banquet & Party Plot in Vadodara?',
     answer:
-      'You can reach our team via telephone at +91 81550 89958 / 081550 89958 or WhatsApp, or visit us in person at Sevasi - Canal Rd, opp. Athletes Arena, near Jalsa Apartment, Sevasi, Vadodara, Gujarat 391101 (Google Plus Code: 845F+J3 Vadodara).',
+      'You can reach our team via telephone at +91 81550 89958 / +91 98985 63788 or WhatsApp, or visit us in person at Sevasi - Canal Rd, opp. Athletes Arena, near Jalsa Apartment, Sevasi, Vadodara, Gujarat 391101 (Google Plus Code: 845F+J3 Vadodara).',
     category: 'Contact',
   },
 ];
@@ -179,17 +179,25 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenInquiry, className
             Speak directly with our senior estate curators
           </div>
           <div className="text-xs font-mono text-[#FAF7F2]/70">
-            Sevasi - Canal Rd, opp. Athletes Arena, Vadodara • Daily 10 AM – 7 PM
+            Sevasi - Canal Rd, opp. Athletes Arena, Vadodara • Daily 9:30 AM – 7:00 PM
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap justify-center sm:justify-start items-center gap-2 sm:gap-3">
           <a
             href="tel:+918155089958"
-            className="px-5 py-3 rounded-full bg-[#FAF7F2] text-[#2A1C16] hover:bg-[#F3EDE2] text-xs font-semibold uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer shadow-md"
+            className="px-4 sm:px-5 py-3 rounded-full bg-[#FAF7F2] text-[#2A1C16] hover:bg-[#F3EDE2] text-xs font-semibold uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer shadow-md"
           >
             <Phone className="w-3.5 h-3.5 text-[#721B24]" />
             <span>+91 81550 89958</span>
+          </a>
+
+          <a
+            href="tel:+919898563788"
+            className="px-4 sm:px-5 py-3 rounded-full bg-[#FAF7F2] text-[#2A1C16] hover:bg-[#F3EDE2] text-xs font-semibold uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer shadow-md"
+          >
+            <Phone className="w-3.5 h-3.5 text-[#721B24]" />
+            <span>+91 98985 63788</span>
           </a>
 
           {onOpenInquiry && (

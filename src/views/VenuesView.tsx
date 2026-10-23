@@ -144,7 +144,7 @@ export const VenuesView: React.FC<VenuesViewProps> = ({
 
           {/* Quick Index Anchors */}
           <div className="masthead-element flex flex-wrap md:flex-col gap-2 md:items-end text-xs font-mono">
-            <span className="text-[10px] uppercase tracking-widest text-[#5C3D2E]/70 mb-1">
+            <span className="text-[10px] uppercase tracking-widest text-[#5C3D2E]/70 mb-1 w-full md:w-auto">
               JUMP TO SANCTUARY
             </span>
             {VENUES.map((v, i) => (

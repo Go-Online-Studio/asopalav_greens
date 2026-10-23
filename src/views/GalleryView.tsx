@@ -360,10 +360,17 @@ export const GalleryView: React.FC<GalleryViewProps> = ({ onOpenInquiry }) => {
             </button>
             <a
               href="tel:+918155089958"
-              className="px-6 py-3.5 rounded-full border border-[#FAF7F2]/40 hover:border-[#D4AF37] text-[#FAF7F2] text-xs uppercase tracking-widest font-medium transition-all flex items-center gap-2 cursor-pointer"
+              className="px-5 py-3.5 rounded-full border border-[#FAF7F2]/40 hover:border-[#D4AF37] text-[#FAF7F2] text-xs uppercase tracking-widest font-medium transition-all flex items-center gap-2 cursor-pointer"
             >
               <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
               <span>+91 81550 89958</span>
+            </a>
+            <a
+              href="tel:+919898563788"
+              className="px-5 py-3.5 rounded-full border border-[#FAF7F2]/40 hover:border-[#D4AF37] text-[#FAF7F2] text-xs uppercase tracking-widest font-medium transition-all flex items-center gap-2 cursor-pointer"
+            >
+              <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
+              <span>+91 98985 63788</span>
             </a>
           </div>
         </div>

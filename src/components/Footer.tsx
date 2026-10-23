@@ -143,20 +143,24 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenInquiry }) => 
               PRIVATE CONCIERGE
             </div>
             <div className="space-y-3 text-sm font-sans font-light text-[#FAF7F2]/80 flex flex-col items-center md:items-start">
-              <p className="flex items-center gap-2">
+              <p className="flex flex-wrap items-center justify-center md:justify-start gap-2">
                 <Phone className="w-3.5 h-3.5 text-[#C5A880]" />
                 <a href="tel:+918155089958" className="hover:text-[#C5A880] transition-colors">
-                  +91 81550 89958 (081550 89958)
+                  +91 81550 89958
+                </a>
+                <span className="text-[#C5A880]/50">•</span>
+                <a href="tel:+919898563788" className="hover:text-[#C5A880] transition-colors">
+                  +91 98985 63788
                 </a>
               </p>
               <p className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-[#C5A880]" />
-                <a href="mailto:concierge@asopalavgrens.com" className="hover:text-[#C5A880] transition-colors">
-                  concierge@asopalavgrens.com
+                <a href="mailto:asopalavgreens03@gmail.com" className="hover:text-[#C5A880] transition-colors">
+                  asopalavgreens03@gmail.com
                 </a>
               </p>
               <p className="flex items-center justify-center md:justify-start gap-2 text-xs text-[#FAF7F2]/60 pt-2 font-mono text-center md:text-left">
-                VISITING HOURS: OPEN DAILY (CLOSES 7:00 PM IST)
+                OFFICE HOURS: 9:30 AM – 7:00 PM (DAILY)
               </p>
             </div>
           </div>

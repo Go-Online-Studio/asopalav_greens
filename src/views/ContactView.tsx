@@ -186,11 +186,21 @@ export const ContactView: React.FC<ContactViewProps> = ({ onOpenInquiry }) => {
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4 text-[#C5A880] flex-none" />
-                  <span>OPEN DAILY: CLOSES 7:00 PM IST</span>
+                  <span>OFFICE HOURS: 9:30 AM – 7:00 PM (OPEN DAILY)</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Phone className="w-4 h-4 text-[#C5A880] flex-none mt-0.5" />
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                    <span className="font-semibold text-[#2A1C16]">TELEPHONE:</span>
+                    <a href="tel:+918155089958" className="hover:text-[#721B24] transition-colors">+91 81550 89958</a>
+                    <span>/</span>
+                    <a href="tel:+919898563788" className="hover:text-[#721B24] transition-colors">+91 98985 63788</a>
+                  </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-[#C5A880] flex-none" />
-                  <span>TELEPHONE: 081550 89958 / +91 81550 89958</span>
+                  <Mail className="w-4 h-4 text-[#C5A880] flex-none" />
+                  <span className="font-semibold text-[#2A1C16]">EMAIL:</span>
+                  <a href="mailto:asopalavgreens03@gmail.com" className="hover:text-[#721B24] transition-colors lowercase">asopalavgreens03@gmail.com</a>
                 </div>
                 <div className="flex items-center gap-2">
                   <Accessibility className="w-4 h-4 text-[#721B24] flex-none" />

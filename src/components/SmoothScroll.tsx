@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react';
 import Lenis from 'lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const SmoothScrollProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   useEffect(() => {
@@ -14,17 +18,18 @@ export const SmoothScrollProvider: React.FC<{ children: React.ReactNode }> = ({ 
       touchMultiplier: 2,
     });
 
-    let animationFrameId: number;
+    // Bridge Lenis → GSAP ScrollTrigger so pin/scrub stays in sync
+    lenis.on('scroll', ScrollTrigger.update);
 
-    function raf(time: number) {
-      lenis.raf(time);
-      animationFrameId = requestAnimationFrame(raf);
-    }
-
-    animationFrameId = requestAnimationFrame(raf);
+    // Use GSAP ticker to drive Lenis instead of a standalone rAF loop,
+    // ensuring both systems share the same frame cadence.
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000); // GSAP ticker time is in seconds, Lenis expects ms
+    });
+    gsap.ticker.lagSmoothing(0); // Prevent GSAP from throttling frames
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
+      gsap.ticker.remove(lenis.raf as any);
       lenis.destroy();
     };
   }, []);

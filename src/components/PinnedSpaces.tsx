@@ -176,7 +176,7 @@ export const PinnedSpaces: React.FC<PinnedSpacesProps> = ({
             touchAction: 'pan-x pan-y',
             WebkitOverflowScrolling: 'touch',
           }}
-          className="w-full overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth no-scrollbar md:overflow-visible pl-4 sm:pl-8 md:pl-14 pr-4 sm:pr-8"
+          className="w-full overflow-x-auto overflow-y-hidden snap-x snap-mandatory md:snap-none no-scrollbar md:overflow-visible pl-4 sm:pl-8 md:pl-14 pr-4 sm:pr-8"
         >
           <div
             ref={trackRef}
