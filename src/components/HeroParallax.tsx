@@ -107,16 +107,16 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
           </div>
 
           {/* Central Hero Block */}
-          <div ref={textContentRef} className="max-w-4xl mx-auto space-y-4 sm:space-y-6">
+          <div ref={textContentRef} className="max-w-4xl xl:max-w-6xl mx-auto space-y-4 sm:space-y-6 xl:space-y-8">
             {/* Crimson Badge */}
-            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-[#721B24] border border-[#C5A880]/30 text-[#FAF7F2] text-[9px] sm:text-xs tracking-[0.16em] sm:tracking-[0.25em] uppercase font-medium shadow-lg shadow-[#721B24]/30 whitespace-nowrap">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 xl:px-5 py-1.5 xl:py-2 rounded-full bg-[#721B24] border border-[#C5A880]/30 text-[#FAF7F2] text-[9px] sm:text-xs xl:text-sm tracking-[0.16em] sm:tracking-[0.25em] uppercase font-medium shadow-lg shadow-[#721B24]/30 whitespace-nowrap">
               <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#D4AF37]" />
               <span>Sanctuary of Grand Celebrations</span>
               <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#D4AF37]" />
             </div>
 
             {/* Architectural Massive Serif Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif tracking-tight text-[#FAF7F2] leading-[1.08] sm:leading-[1.05] font-light">
+            <h1 className="text-2xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-serif tracking-tight text-[#FAF7F2] leading-[1.08] sm:leading-[1.03] font-light">
               THE ARCHITECTURE OF <br className="hidden sm:inline" />
               <span className="italic font-normal text-[#FAF7F2] tracking-normal">
                 TIMELESS UNIONS
@@ -124,15 +124,15 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
             </h1>
 
             {/* Single Sentence Poetic Caption */}
-            <p className="max-w-2xl mx-auto text-xs sm:text-lg text-[#F3EDE2]/90 font-light tracking-wide leading-relaxed font-sans px-2">
+            <p className="max-w-2xl xl:max-w-3xl mx-auto text-xs sm:text-lg xl:text-xl text-[#F3EDE2]/90 font-light tracking-wide leading-relaxed font-sans px-2">
               Vadodara’s benchmark open-air estate and pillarless banquet hall, sculpted for generational ceremonies.
             </p>
 
             {/* CTA Buttons */}
-            <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md sm:max-w-none mx-auto">
+            <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 xl:gap-6 w-full max-w-md sm:max-w-none mx-auto">
               <button
                 onClick={onOpenInquiry}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 rounded-full bg-[#721B24] hover:bg-[#5a151c] text-[#FAF7F2] tracking-[0.16em] sm:tracking-[0.2em] text-[11px] sm:text-xs uppercase font-medium border border-[#C5A880]/40 shadow-xl shadow-wine-950/40 transition-all duration-300 hover:scale-[1.02] cursor-pointer whitespace-nowrap"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 xl:px-10 py-3.5 xl:py-4 rounded-full bg-[#721B24] hover:bg-[#5a151c] text-[#FAF7F2] tracking-[0.16em] sm:tracking-[0.2em] text-[11px] sm:text-xs xl:text-sm uppercase font-medium border border-[#C5A880]/40 shadow-xl shadow-wine-950/40 transition-all duration-300 hover:scale-[1.02] cursor-pointer whitespace-nowrap"
               >
                 <Calendar className="w-3.5 h-3.5 text-[#D4AF37]" />
                 Inquire For 2026–2027
@@ -140,7 +140,7 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
 
               <button
                 onClick={onExploreSpaces}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-full bg-transparent hover:bg-[#FAF7F2]/10 backdrop-blur-md text-[#FAF7F2] tracking-[0.16em] sm:tracking-[0.2em] text-[11px] sm:text-xs uppercase font-medium border border-[#C5A880]/40 hover:border-[#C5A880] transition-all duration-300 cursor-pointer whitespace-nowrap"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-7 xl:px-9 py-3.5 xl:py-4 rounded-full bg-transparent hover:bg-[#FAF7F2]/10 backdrop-blur-md text-[#FAF7F2] tracking-[0.16em] sm:tracking-[0.2em] text-[11px] sm:text-xs xl:text-sm uppercase font-medium border border-[#C5A880]/40 hover:border-[#C5A880] transition-all duration-300 cursor-pointer whitespace-nowrap"
               >
                 Explore The Grounds
                 <ArrowDownRight className="w-3.5 h-3.5 text-[#C5A880]" />
@@ -149,14 +149,14 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
           </div>
 
           {/* Bottom Bar Metrics */}
-          <div className="w-full max-w-4xl mx-auto pt-4 border-t border-[#C5A880]/20 flex items-center justify-between text-[10px] sm:text-xs font-mono text-[#F3EDE2]/80">
+          <div className="w-full max-w-4xl xl:max-w-6xl mx-auto pt-4 border-t border-[#C5A880]/20 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left text-[10px] sm:text-xs xl:text-sm font-mono text-[#F3EDE2]/80">
             <div className="flex items-center gap-2">
               <span className="text-[#C5A880]">I.</span>
-              <span className="tracking-wider">45,000 SQ. FT. ESTATE</span>
+              <span className="tracking-wider">39,000+ SQ. FT. ESTATE</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#2F3E34] border border-[#C5A880]/50" />
-              <span className="tracking-wider text-[9px] sm:text-[11px] text-[#C5A880] uppercase">
+              <span className="tracking-wider text-[9px] sm:text-[11px] xl:text-xs text-[#C5A880] uppercase">
                 DIARY OPEN 2026–27
               </span>
             </div>

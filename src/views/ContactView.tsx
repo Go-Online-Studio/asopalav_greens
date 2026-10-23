@@ -16,8 +16,8 @@ interface ContactViewProps {
 
 export const ContactView: React.FC<ContactViewProps> = ({ onOpenInquiry }) => {
   const [celebrationType, setCelebrationType] = useState('Royal Wedding & Reception');
-  const [preferredVenue, setPreferredVenue] = useState('The Grand Royal Lawn (45,000 Sq. Ft.)');
-  const [guestCount, setGuestCount] = useState(1500);
+  const [preferredVenue, setPreferredVenue] = useState('The Banquet (30,000 Sq. Ft.)');
+  const [guestCount, setGuestCount] = useState(1200);
   const [preferredDate, setPreferredDate] = useState('2026-12-10');
   const [timeSlot, setTimeSlot] = useState('Twilight & Evening Gala (05:00 PM – Midnight)');
   const [patronName, setPatronName] = useState('');
@@ -132,42 +132,45 @@ export const ContactView: React.FC<ContactViewProps> = ({ onOpenInquiry }) => {
 
   return (
     <div ref={containerRef} className="w-full bg-[#FAF7F2] text-[#2A1C16] min-h-screen">
-      {/* Editorial Header */}
-      <section className="pt-12 sm:pt-20 pb-12 px-4 sm:px-8 max-w-7xl mx-auto border-b border-[#C5A880]/30">
-        <div className="space-y-4 max-w-3xl">
-          <div className="gsap-fade-up flex items-center gap-2 text-xs font-mono text-[#721B24] tracking-[0.25em] uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#721B24]" />
-            ESTATE PROTOCOL & DIARY RESERVATIONS
+      {/* Editorial Header — Natural Cream bg-[#FAF7F2] */}
+      <section className="w-full bg-[#FAF7F2] pt-12 sm:pt-20 pb-12 border-b border-[#C5A880]/30">
+        <div className="px-4 sm:px-8 xl:px-12 max-w-7xl xl:max-w-[1440px] 2xl:max-w-[1680px] mx-auto">
+          <div className="space-y-4 max-w-3xl xl:max-w-4xl">
+            <div className="gsap-fade-up flex items-center gap-2 text-xs xl:text-sm font-mono text-[#721B24] tracking-[0.25em] uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#721B24]" />
+              ESTATE PROTOCOL & DIARY RESERVATIONS
+            </div>
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-serif text-[#2A1C16] font-light leading-[1.04]">
+              <WordReveal text="CONCIERGE &" />{' '}
+              <span className="italic font-normal"><WordReveal text="DATES" /></span>
+            </h1>
+            <p className="gsap-fade-up text-sm sm:text-base xl:text-lg text-[#5C3D2E] font-sans font-light leading-relaxed">
+              Inscribe your celebratory vision into our rolling diary. We welcome patrons and bridal architects for private walk-throughs by prior appointment.
+            </p>
           </div>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif text-[#2A1C16] font-light leading-[1.08]">
-            <WordReveal text="CONCIERGE &" />{' '}
-            <span className="italic font-normal"><WordReveal text="DATES" /></span>
-          </h1>
-          <p className="gsap-fade-up text-sm sm:text-base text-[#5C3D2E] font-sans font-light leading-relaxed">
-            Inscribe your celebratory vision into our rolling diary. We welcome patrons and bridal architects for private walk-throughs by prior appointment.
-          </p>
         </div>
       </section>
 
-      {/* Main Two-Column Split */}
-      <section className="py-12 sm:py-20 px-4 sm:px-8 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 sm:gap-16 items-start">
-          {/* Left Column: Location & Coordinates */}
-          <div className="lg:col-span-5 space-y-8">
-            <div className="space-y-4">
-              <span className="gsap-fade-up text-xs font-mono text-[#721B24] tracking-widest uppercase">
-                COORDINATES & REACH
-              </span>
-              <h2 className="text-3xl font-serif text-[#2A1C16] font-light">
-                <WordReveal text="The Sevasi Sanctuary" />
-              </h2>
-              <p className="gsap-fade-up text-sm text-[#5C3D2E] font-sans font-light leading-relaxed">
-                Positioned in Vadodara's most distinguished tranquil enclave along Sevasi-Bhimpura Main Road, insulated from city noise while remaining easily accessible for high-profile cortèges.
-              </p>
-            </div>
+      {/* Main Two-Column Split — Slightly Darker Cream bg-[#F3EDE2] */}
+      <section className="w-full bg-[#F3EDE2] py-14 sm:py-20 xl:py-24 border-b border-[#C5A880]/30">
+        <div className="px-4 sm:px-8 xl:px-12 max-w-7xl xl:max-w-[1440px] 2xl:max-w-[1680px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 sm:gap-16 items-start">
+            {/* Left Column: Location & Coordinates */}
+            <div className="lg:col-span-5 space-y-8">
+              <div className="space-y-4">
+                <span className="gsap-fade-up text-xs font-mono text-[#721B24] tracking-widest uppercase">
+                  COORDINATES & REACH
+                </span>
+                <h2 className="text-3xl font-serif text-[#2A1C16] font-light">
+                  <WordReveal text="The Sevasi Sanctuary" />
+                </h2>
+                <p className="gsap-fade-up text-sm text-[#5C3D2E] font-sans font-light leading-relaxed">
+                  Positioned in Vadodara's most distinguished tranquil enclave along Sevasi-Bhimpura Main Road, insulated from city noise while remaining easily accessible for high-profile cortèges.
+                </p>
+              </div>
 
-            {/* Address Card */}
-            <div className="gsap-scale-in p-6 sm:p-8 rounded-3xl bg-[#F3EDE2] border border-[#C5A880]/40 space-y-4 shadow-sm">
+              {/* Address Card (bg-[#FAF7F2] stands out crisply on darker cream) */}
+              <div className="gsap-scale-in p-6 sm:p-8 rounded-3xl bg-[#FAF7F2] border border-[#C5A880]/40 space-y-4 shadow-sm">
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-[#721B24] flex-none mt-1" />
                 <div className="space-y-1">
@@ -214,34 +217,34 @@ export const ContactView: React.FC<ContactViewProps> = ({ onOpenInquiry }) => {
               <div className="gsap-fade-up text-xs font-mono text-[#5C3D2E] tracking-widest uppercase">
                 TRANSIT TIMELINES
               </div>
-              <div className="gsap-stagger grid grid-cols-3 gap-3 text-center">
-                <div className="p-4 rounded-2xl bg-white border border-[#C5A880]/30">
-                  <div className="text-xl font-serif font-bold text-[#721B24]">15 MIN</div>
-                  <div className="text-[10px] font-mono text-[#5C3D2E] uppercase mt-1">Alkapuri</div>
+              <div className="gsap-stagger grid grid-cols-3 gap-2 sm:gap-3 text-center">
+                <div className="p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white border border-[#C5A880]/30">
+                  <div className="text-sm sm:text-xl font-serif font-bold text-[#721B24]">15 MIN</div>
+                  <div className="text-[9px] sm:text-[10px] font-mono text-[#5C3D2E] uppercase mt-0.5 sm:mt-1">Alkapuri</div>
                 </div>
-                <div className="p-4 rounded-2xl bg-white border border-[#C5A880]/30">
-                  <div className="text-xl font-serif font-bold text-[#721B24]">25 MIN</div>
-                  <div className="text-[10px] font-mono text-[#5C3D2E] uppercase mt-1">BDQ Airport</div>
+                <div className="p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white border border-[#C5A880]/30">
+                  <div className="text-sm sm:text-xl font-serif font-bold text-[#721B24]">25 MIN</div>
+                  <div className="text-[9px] sm:text-[10px] font-mono text-[#5C3D2E] uppercase mt-0.5 sm:mt-1">BDQ Airport</div>
                 </div>
-                <div className="p-4 rounded-2xl bg-white border border-[#C5A880]/30">
-                  <div className="text-xl font-serif font-bold text-[#721B24]">20 MIN</div>
-                  <div className="text-[10px] font-mono text-[#5C3D2E] uppercase mt-1">Vadodara Rly</div>
+                <div className="p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white border border-[#C5A880]/30">
+                  <div className="text-sm sm:text-xl font-serif font-bold text-[#721B24]">20 MIN</div>
+                  <div className="text-[9px] sm:text-[10px] font-mono text-[#5C3D2E] uppercase mt-0.5 sm:mt-1">Vadodara Rly</div>
                 </div>
               </div>
             </div>
 
             {/* WhatsApp Concierge Button */}
-            <div className="gsap-scale-in p-6 rounded-3xl bg-[#2A1C16] text-[#FAF7F2] border border-[#C5A880]/40 space-y-4 shadow-xl">
+            <div className="gsap-scale-in p-5 sm:p-6 rounded-3xl bg-[#2A1C16] text-[#FAF7F2] border border-[#C5A880]/40 space-y-4 shadow-xl">
               <div className="flex items-center gap-2 text-xs font-mono text-[#D4AF37] tracking-widest uppercase">
                 <MessageCircle className="w-4 h-4" />
                 INSTANT PRIVATE CHANNEL
               </div>
-              <div className="text-lg font-serif">
+              <div className="text-base sm:text-lg font-serif">
                 Prefer immediate liaison with our Head Curator?
               </div>
               <button
                 onClick={handleWhatsAppChat}
-                className="w-full py-3.5 rounded-full bg-[#FAF7F2] text-[#2A1C16] hover:bg-[#F3EDE2] text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg"
+                className="w-full py-3 sm:py-3.5 rounded-full bg-[#FAF7F2] text-[#2A1C16] hover:bg-[#F3EDE2] text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg"
               >
                 <Phone className="w-4 h-4 text-[#721B24]" />
                 Launch WhatsApp Concierge
@@ -249,8 +252,8 @@ export const ContactView: React.FC<ContactViewProps> = ({ onOpenInquiry }) => {
             </div>
           </div>
 
-          {/* Right Column: Booking Form */}
-          <div className="gsap-scale-in lg:col-span-7 bg-[#F3EDE2] rounded-3xl border border-[#C5A880]/40 p-6 sm:p-12 shadow-xl relative">
+          {/* Right Column: Booking Form (bg-[#FAF7F2] stands out cleanly against darker cream section) */}
+          <div className="gsap-scale-in lg:col-span-7 bg-[#FAF7F2] rounded-3xl border border-[#C5A880]/40 p-4 sm:p-12 shadow-xl relative">
             {submitted ? (
               <div className="py-12 text-center space-y-6">
                 <div className="w-16 h-16 rounded-full bg-[#721B24] border border-[#C5A880] mx-auto flex items-center justify-center text-[#D4AF37]">
@@ -323,17 +326,16 @@ export const ContactView: React.FC<ContactViewProps> = ({ onOpenInquiry }) => {
                 {/* Preferred Venue Space */}
                 <div className="gsap-fade-up space-y-2">
                   <label className="text-xs font-mono uppercase tracking-wider text-[#5C3D2E]">
-                    Preferred Realm
+                    Preferred Space
                   </label>
                   <select
                     value={preferredVenue}
                     onChange={(e) => setPreferredVenue(e.target.value)}
                     className="w-full p-3 rounded-xl border border-[#C5A880]/50 bg-white text-xs font-sans text-[#2A1C16] focus:outline-none focus:ring-1 focus:ring-[#721B24]"
                   >
-                    <option value="The Grand Royal Lawn (45,000 Sq. Ft.)">The Grand Royal Lawn (Up to 3,000 Guests)</option>
-                    <option value="The Crystal Pillarless Hall (18,000 Sq. Ft.)">The Crystal Pillarless Hall (Up to 1,200 Guests)</option>
-                    <option value="The Courtyard & Mandap Grove (12,000 Sq. Ft.)">The Courtyard & Mandap Grove (Up to 600 Guests)</option>
-                    <option value="Full Estate Buyout (All Three Realms)">Full Estate Buyout (Concurrent Multi-Day Access)</option>
+                    <option value="The Banquet (30,000 Sq. Ft.)">The Banquet (30,000 Sq. Ft. • 750 Seating)</option>
+                    <option value="The Lawn (9,000 Sq. Ft.)">The Lawn (9,000 Sq. Ft. Party Plot • 1,200 Seating)</option>
+                    <option value="Combined Estate (Both Spaces)">Combined Estate Booking (Banquet & Lawn)</option>
                   </select>
                 </div>
 
@@ -458,6 +460,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ onOpenInquiry }) => {
               </form>
             )}
           </div>
+        </div>
         </div>
       </section>
 

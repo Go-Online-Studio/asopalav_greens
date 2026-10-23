@@ -42,7 +42,7 @@ export default function App() {
     if (venueName) {
       setInquirySelectedVenue(venueName);
     } else {
-      setInquirySelectedVenue('The Grand Royal Lawn (45,000 Sq. Ft.)');
+      setInquirySelectedVenue('The Banquet (30,000 Sq. Ft.)');
     }
     setInquiryModalOpen(true);
   };

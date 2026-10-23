@@ -33,7 +33,7 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className="sticky top-0 z-50 w-full px-3 sm:px-6 pt-3 transition-all duration-300">
       <div
-        className={`max-w-7xl mx-auto rounded-full px-5 sm:px-8 py-3 flex items-center justify-between transition-all duration-300 border ${
+        className={`max-w-7xl xl:max-w-[1440px] 2xl:max-w-[1680px] mx-auto rounded-full px-3.5 sm:px-8 xl:px-10 py-2.5 sm:py-3 xl:py-3.5 flex items-center justify-between transition-all duration-300 border ${
           scrolled
             ? 'bg-[#FAF7F2]/90 backdrop-blur-md border-[#C5A880]/40 shadow-lg shadow-espresso-950/5'
             : 'bg-[#FAF7F2]/80 backdrop-blur-sm border-[#C5A880]/20'
@@ -56,7 +56,7 @@ export const Header: React.FC<HeaderProps> = ({
         </button>
 
         {/* Center: Minimal Editorial Navigation */}
-        <nav className="hidden lg:flex items-center gap-8 text-xs uppercase tracking-[0.2em] font-sans text-[#5C3D2E]">
+        <nav className="hidden lg:flex items-center gap-8 xl:gap-12 text-xs xl:text-sm uppercase tracking-[0.2em] font-sans text-[#5C3D2E]">
           {navLinks.map((item) => {
             const isActive =
               currentPath === item.path ||
@@ -87,9 +87,9 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center gap-3">
           <button
             onClick={onOpenInquiry}
-            className="hidden sm:inline-flex items-center gap-2 bg-[#721B24] hover:bg-[#58151C] text-[#FAF7F2] tracking-[0.18em] text-xs uppercase px-5 sm:px-6 py-2.5 rounded-full border border-[#C5A880]/30 shadow-md shadow-wine-900/20 transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+            className="hidden sm:inline-flex items-center gap-2 bg-[#721B24] hover:bg-[#58151C] text-[#FAF7F2] tracking-[0.18em] text-xs xl:text-sm uppercase px-5 sm:px-6 xl:px-7 py-2.5 xl:py-3 rounded-full border border-[#C5A880]/30 shadow-md shadow-wine-900/20 transition-all duration-300 hover:scale-[1.02] cursor-pointer"
           >
-            <Sparkles className="w-3 h-3 text-[#D4AF37]" />
+            <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
             <span>Inquire for 2026–2027</span>
           </button>
 

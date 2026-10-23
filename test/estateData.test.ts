@@ -3,9 +3,9 @@ import assert from 'node:assert';
 import { VENUES, GALLERY_ITEMS } from '../src/data/estateData.js';
 
 test('Estate Data: Venues Integrity', () => {
-  assert.strictEqual(VENUES.length, 3, 'Must have exactly three primary realms');
+  assert.strictEqual(VENUES.length, 2, 'Must have exactly two primary spaces');
 
-  const expectedSlugs = ['lawn', 'crystal-banquet', 'mandap-grove'];
+  const expectedSlugs = ['banquet', 'lawn'];
   const actualSlugs = VENUES.map((v) => v.slug);
   assert.deepStrictEqual(actualSlugs, expectedSlugs, 'Venues must match expected slugs');
 
@@ -35,11 +35,14 @@ test('Estate Data: Gallery Curations Integrity', () => {
 test('Slug Normalization Logic', () => {
   const normalizeSlug = (slug: string) => {
     if (slug === 'royal-lawn') return 'lawn';
-    if (slug === 'crystal-hall') return 'crystal-banquet';
+    if (slug === 'crystal-banquet' || slug === 'crystal-hall') return 'banquet';
     return slug;
   };
 
   assert.strictEqual(normalizeSlug('royal-lawn'), 'lawn');
-  assert.strictEqual(normalizeSlug('crystal-hall'), 'crystal-banquet');
-  assert.strictEqual(normalizeSlug('mandap-grove'), 'mandap-grove');
+  assert.strictEqual(normalizeSlug('crystal-hall'), 'banquet');
+  assert.strictEqual(normalizeSlug('crystal-banquet'), 'banquet');
+  assert.strictEqual(normalizeSlug('banquet'), 'banquet');
+  assert.strictEqual(normalizeSlug('lawn'), 'lawn');
 });
+

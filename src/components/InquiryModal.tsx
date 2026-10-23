@@ -14,7 +14,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
 }) => {
   const [step, setStep] = useState(1);
   const [celebrationType, setCelebrationType] = useState('Royal Wedding & Reception');
-  const [venuePreference, setVenuePreference] = useState(preselectedVenue || 'The Grand Royal Lawn (45,000 Sq. Ft.)');
+  const [venuePreference, setVenuePreference] = useState(preselectedVenue || 'The Banquet (30,000 Sq. Ft.)');
   const [guestCount, setGuestCount] = useState(1200);
   const [preferredDate, setPreferredDate] = useState('2026-11-20');
   const [timeSlot, setTimeSlot] = useState('Evening & Starlit Reception (06:00 PM onwards)');
@@ -47,12 +47,12 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
       />
 
       {/* Modal Dialog Card */}
-      <div className="relative w-full max-w-2xl bg-[#FAF7F2] rounded-3xl border border-[#C5A880]/50 shadow-2xl p-6 sm:p-10 my-8 z-10 text-[#2A1C16]">
+      <div className="relative w-full max-w-2xl xl:max-w-3xl bg-[#FAF7F2] rounded-3xl border border-[#C5A880]/50 shadow-2xl p-4 sm:p-10 xl:p-12 my-8 z-10 text-[#2A1C16]">
         {/* Close Button */}
         <button
           onClick={onClose}
           aria-label="Close modal"
-          className="absolute top-6 right-6 w-10 h-10 rounded-full border border-[#C5A880]/40 flex items-center justify-center text-[#2A1C16] hover:bg-[#F3EDE2] transition-colors cursor-pointer"
+          className="absolute top-4 right-4 sm:top-6 sm:right-6 w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#C5A880]/40 flex items-center justify-center text-[#2A1C16] hover:bg-[#F3EDE2] transition-colors cursor-pointer"
         >
           <X className="w-4 h-4" />
         </button>
@@ -189,10 +189,9 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                       onChange={(e) => setVenuePreference(e.target.value)}
                       className="w-full p-3 rounded-xl border border-[#C5A880]/50 bg-white text-xs font-sans text-[#2A1C16] focus:outline-none focus:ring-1 focus:ring-[#721B24]"
                     >
-                      <option value="The Grand Royal Lawn (45,000 Sq. Ft.)">The Grand Royal Lawn (Up to 3,000 Guests)</option>
-                      <option value="The Crystal Pillarless Hall (18,000 Sq. Ft.)">The Crystal Pillarless Hall (Up to 1,200 Guests)</option>
-                      <option value="The Courtyard & Mandap Grove (12,000 Sq. Ft.)">The Courtyard & Mandap Grove (Up to 600 Guests)</option>
-                      <option value="Full Estate Buyout (All Three Realms)">Full Estate Buyout (Concurrent Access)</option>
+                      <option value="The Banquet (30,000 Sq. Ft.)">The Banquet (30,000 Sq. Ft. • 750 Seating)</option>
+                      <option value="The Lawn (9,000 Sq. Ft.)">The Lawn (9,000 Sq. Ft. Party Plot • 1,200 Seating)</option>
+                      <option value="Combined Estate (Both Spaces)">Combined Estate Booking (Banquet & Lawn)</option>
                     </select>
                   </div>
 

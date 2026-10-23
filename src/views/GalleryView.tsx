@@ -216,162 +216,168 @@ export const GalleryView: React.FC<GalleryViewProps> = ({ onOpenInquiry }) => {
 
   return (
     <div ref={containerRef} className="w-full bg-[#FAF7F2] text-[#2A1C16] min-h-screen">
-      {/* Editorial Header */}
-      <section className="pt-12 sm:pt-20 pb-12 px-4 sm:px-8 max-w-7xl mx-auto border-b border-[#C5A880]/30">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div className="space-y-4 max-w-3xl">
-            <div className="gsap-fade-up flex items-center gap-2 text-xs font-mono text-[#721B24] tracking-[0.25em] uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#721B24]" />
-              VISUAL CHRONICLE
+      {/* Editorial Header — Natural Cream bg-[#FAF7F2] */}
+      <section className="w-full bg-[#FAF7F2] pt-12 sm:pt-20 pb-12 border-b border-[#C5A880]/30">
+        <div className="px-4 sm:px-8 xl:px-12 max-w-7xl xl:max-w-[1440px] 2xl:max-w-[1680px] mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <div className="space-y-4 max-w-3xl xl:max-w-4xl">
+              <div className="gsap-fade-up flex items-center gap-2 text-xs xl:text-sm font-mono text-[#721B24] tracking-[0.25em] uppercase">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#721B24]" />
+                VISUAL CHRONICLE
+              </div>
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-serif text-[#2A1C16] font-light leading-[1.04]">
+                <WordReveal text="THE VISUAL" />{' '}
+                <span className="italic font-normal"><WordReveal text="ARCHIVE" /></span>
+              </h1>
+              <p className="gsap-fade-up text-sm sm:text-base xl:text-lg text-[#5C3D2E] font-sans font-light leading-relaxed">
+                Moments of grandeur captured across the sprawling lawns, crystal ceilings, and sacred waters of Asopalav Greens.
+              </p>
             </div>
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif text-[#2A1C16] font-light leading-[1.08]">
-              <WordReveal text="THE VISUAL" />{' '}
-              <span className="italic font-normal"><WordReveal text="ARCHIVE" /></span>
-            </h1>
-            <p className="gsap-fade-up text-sm sm:text-base text-[#5C3D2E] font-sans font-light leading-relaxed">
-              Moments of grandeur captured across the sprawling lawns, crystal ceilings, and sacred waters of Asopalav Greens.
-            </p>
-          </div>
 
-          {/* Filter Buttons */}
-          <div className="gsap-fade-up flex flex-wrap items-center gap-2">
-            {filters.map((f) => (
-              <button
-                key={f.key}
-                onClick={() => setSelectedFilter(f.key)}
-                className={`px-4 py-2 rounded-full text-xs font-sans tracking-wider uppercase transition-all cursor-pointer ${
-                  selectedFilter === f.key
-                    ? 'bg-[#721B24] text-[#FAF7F2] font-semibold border border-[#C5A880]/50 shadow-md'
-                    : 'bg-[#F3EDE2] text-[#5C3D2E] hover:text-[#2A1C16] border border-[#C5A880]/30 hover:border-[#C5A880]'
-                }`}
-              >
-                {f.label}
-              </button>
-            ))}
+            {/* Filter Buttons */}
+            <div className="gsap-fade-up flex flex-wrap items-center gap-1.5 sm:gap-2 xl:gap-3">
+              {filters.map((f) => (
+                <button
+                  key={f.key}
+                  onClick={() => setSelectedFilter(f.key)}
+                  className={`px-3 py-1.5 sm:px-4 sm:py-2 xl:px-5 xl:py-2.5 rounded-full text-[11px] sm:text-xs xl:text-sm font-sans tracking-wider uppercase transition-all cursor-pointer ${
+                    selectedFilter === f.key
+                      ? 'bg-[#721B24] text-[#FAF7F2] font-semibold border border-[#C5A880]/50 shadow-md'
+                      : 'bg-[#F3EDE2] text-[#5C3D2E] hover:text-[#2A1C16] border border-[#C5A880]/30 hover:border-[#C5A880]'
+                  }`}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Masonry Photo Grid with imagesLoaded & Fancybox */}
-      <section className="py-12 sm:py-20 px-4 sm:px-8 max-w-7xl mx-auto">
-        <div
-          ref={gridRef}
-          className={`masonry-grid relative ${isMasonryReady ? 'masonry-ready' : 'opacity-0'}`}
-        >
-          {filteredItems.map((item) => {
-            const captionHtml = `
-              <div class="text-center max-w-xl mx-auto py-2">
-                <div class="text-[11px] font-mono tracking-widest text-[#D4AF37] uppercase mb-1">
-                  ${item.venueName} • ${item.season} • ${item.categoryLabel}
-                </div>
-                <div class="text-xl sm:text-2xl font-serif text-[#FAF7F2] font-light leading-snug mb-1">
-                  ${item.title}
-                </div>
-                <div class="text-xs text-[#FAF7F2]/80 font-sans font-light leading-relaxed">
-                  ${item.caption}
-                </div>
-              </div>
-            `;
-
-            return (
-              <div
-                key={item.id}
-                className="masonry-grid-item"
-              >
-                <div className="group relative rounded-2xl overflow-hidden border border-[#C5A880]/40 bg-[#2A1C16] shadow-lg hover:shadow-2xl transition-all duration-500">
-                  <a
-                    href={item.image}
-                    data-fancybox="visual-archive"
-                    data-caption={captionHtml}
-                    className="block overflow-hidden relative cursor-zoom-in"
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-auto block object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-
-                    {/* Hover Overlay with Editorial Badges */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#2A1C16]/95 via-[#2A1C16]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-6 pointer-events-none">
-                      <div className="flex justify-between items-start">
-                        <span className="px-3 py-1 rounded-full bg-[#FAF7F2]/90 backdrop-blur-md text-[#721B24] text-[10px] font-mono tracking-widest uppercase shadow-md">
-                          {item.categoryLabel}
-                        </span>
-                        <div className="w-8 h-8 rounded-full bg-[#FAF7F2]/85 flex items-center justify-center text-[#2A1C16] shadow-md">
-                          <Maximize2 className="w-4 h-4 text-[#721B24]" />
-                        </div>
-                      </div>
-
-                      <div className="space-y-1 text-[#FAF7F2]">
-                        <div className="text-[11px] font-mono text-[#D4AF37] tracking-widest uppercase">
-                          {item.venueName} • {item.season}
-                        </div>
-                        <h3 className="text-lg sm:text-xl font-serif font-light leading-snug">
-                          {item.title}
-                        </h3>
-                        <p className="text-xs text-[#F3EDE2]/80 font-sans font-light line-clamp-2">
-                          {item.caption}
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-
-                  {/* Quick Card Footer with Direct Inquiry */}
-                  <div className="p-4 bg-[#F3EDE2] border-t border-[#C5A880]/30 flex items-center justify-between text-xs font-mono">
-                    <span className="text-[#5C3D2E] truncate pr-2 font-medium">
-                      {item.venueName}
-                    </span>
-                    <button
-                      onClick={() => onOpenInquiry(item.venueName)}
-                      className="flex-none px-3 py-1.5 rounded-full bg-[#721B24] text-[#FAF7F2] text-[10px] uppercase tracking-wider font-semibold hover:bg-[#58151C] transition-colors cursor-pointer"
-                    >
-                      Inquire
-                    </button>
+      {/* Masonry Photo Grid — Slightly Darker Cream bg-[#F3EDE2] */}
+      <section className="w-full bg-[#F3EDE2] py-14 sm:py-20 xl:py-24 border-b border-[#C5A880]/30">
+        <div className="px-4 sm:px-8 xl:px-12 max-w-7xl xl:max-w-[1440px] 2xl:max-w-[1680px] mx-auto">
+          <div
+            ref={gridRef}
+            className={`masonry-grid relative ${isMasonryReady ? 'masonry-ready' : 'opacity-0'}`}
+          >
+            {filteredItems.map((item) => {
+              const captionHtml = `
+                <div class="text-center max-w-xl mx-auto py-2">
+                  <div class="text-[11px] font-mono tracking-widest text-[#D4AF37] uppercase mb-1">
+                    ${item.venueName} • ${item.season} • ${item.categoryLabel}
+                  </div>
+                  <div class="text-xl sm:text-2xl font-serif text-[#FAF7F2] font-light leading-snug mb-1">
+                    ${item.title}
+                  </div>
+                  <div class="text-xs text-[#FAF7F2]/80 font-sans font-light leading-relaxed">
+                    ${item.caption}
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              `;
+
+              return (
+                <div
+                  key={item.id}
+                  className="masonry-grid-item"
+                >
+                  <div className="group relative rounded-2xl overflow-hidden border border-[#C5A880]/40 bg-[#2A1C16] shadow-lg hover:shadow-2xl transition-all duration-500">
+                    <a
+                      href={item.image}
+                      data-fancybox="visual-archive"
+                      data-caption={captionHtml}
+                      className="block overflow-hidden relative cursor-zoom-in"
+                    >
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-auto block object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      />
+
+                      {/* Hover Overlay with Editorial Badges */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#2A1C16]/95 via-[#2A1C16]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-6 pointer-events-none">
+                        <div className="flex justify-between items-start">
+                          <span className="px-3 py-1 rounded-full bg-[#FAF7F2]/90 backdrop-blur-md text-[#721B24] text-[10px] font-mono tracking-widest uppercase shadow-md">
+                            ${item.categoryLabel}
+                          </span>
+                          <div className="w-8 h-8 rounded-full bg-[#FAF7F2]/85 flex items-center justify-center text-[#2A1C16] shadow-md">
+                            <Maximize2 className="w-4 h-4 text-[#721B24]" />
+                          </div>
+                        </div>
+
+                        <div className="space-y-1 text-[#FAF7F2]">
+                          <div className="text-[11px] font-mono text-[#D4AF37] tracking-widest uppercase">
+                            ${item.venueName} • ${item.season}
+                          </div>
+                          <h3 className="text-lg sm:text-xl font-serif font-light leading-snug">
+                            ${item.title}
+                          </h3>
+                          <p className="text-xs text-[#F3EDE2]/80 font-sans font-light line-clamp-2">
+                            ${item.caption}
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+
+                    {/* Quick Card Footer with Direct Inquiry */}
+                    <div className="p-4 bg-[#FAF7F2] border-t border-[#C5A880]/30 flex items-center justify-between text-xs font-mono">
+                      <span className="text-[#5C3D2E] truncate pr-2 font-medium">
+                        {item.venueName}
+                      </span>
+                      <button
+                        onClick={() => onOpenInquiry(item.venueName)}
+                        className="flex-none px-3 py-1.5 rounded-full bg-[#721B24] text-[#FAF7F2] text-[10px] uppercase tracking-wider font-semibold hover:bg-[#58151C] transition-colors cursor-pointer"
+                      >
+                        Inquire
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      {/* Floating Concierge Action Banner */}
-      <section className="py-12 px-4 sm:px-8 max-w-7xl mx-auto border-t border-[#C5A880]/30">
-        <div className="p-8 sm:p-12 rounded-3xl bg-[#721B24] text-[#FAF7F2] border border-[#C5A880]/50 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-          <div className="space-y-2 max-w-2xl">
-            <div className="inline-flex items-center gap-2 text-xs font-mono text-[#D4AF37] tracking-widest uppercase">
-              <Sparkles className="w-3.5 h-3.5" />
-              BESPOKE WEDDING & EVENT CURATIONS
+      {/* Floating Concierge Action Banner — Natural Cream bg-[#FAF7F2] */}
+      <section className="w-full bg-[#FAF7F2] py-14 sm:py-20 xl:py-24">
+        <div className="px-4 sm:px-8 xl:px-12 max-w-7xl xl:max-w-[1440px] 2xl:max-w-[1680px] mx-auto">
+          <div className="p-8 sm:p-12 xl:p-16 rounded-3xl xl:rounded-[36px] bg-[#721B24] text-[#FAF7F2] border border-[#C5A880]/50 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 xl:gap-8 text-center md:text-left">
+            <div className="space-y-2 xl:space-y-3 max-w-2xl xl:max-w-3xl">
+              <div className="inline-flex items-center gap-2 text-xs xl:text-sm font-mono text-[#D4AF37] tracking-widest uppercase">
+                <Sparkles className="w-3.5 h-3.5" />
+                BESPOKE WEDDING & EVENT CURATIONS
+              </div>
+              <h3 className="text-2xl sm:text-4xl xl:text-5xl font-serif font-light leading-snug">
+                Envisioning a Similar Theme for Your Celebration?
+              </h3>
+              <p className="text-xs sm:text-sm xl:text-base text-[#F3EDE2]/90 font-light">
+                Connect with our master wedding planners to explore custom floral canopies, crystal chandeliers, and banquet staging.
+              </p>
             </div>
-            <h3 className="text-2xl sm:text-4xl font-serif font-light leading-snug">
-              Envisioning a Similar Theme for Your Celebration?
-            </h3>
-            <p className="text-xs sm:text-sm text-[#F3EDE2]/90 font-light">
-              Connect with our master wedding planners to explore custom floral canopies, crystal chandeliers, and banquet staging.
-            </p>
-          </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <button
-              onClick={() => onOpenInquiry()}
-              className="px-7 py-3.5 rounded-full bg-[#FAF7F2] text-[#721B24] hover:bg-[#F3EDE2] text-xs uppercase tracking-widest font-semibold transition-all shadow-xl hover:scale-105 cursor-pointer"
-            >
-              Request Venue Viewing
-            </button>
-            <a
-              href="tel:+918155089958"
-              className="px-5 py-3.5 rounded-full border border-[#FAF7F2]/40 hover:border-[#D4AF37] text-[#FAF7F2] text-xs uppercase tracking-widest font-medium transition-all flex items-center gap-2 cursor-pointer"
-            >
-              <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
-              <span>+91 81550 89958</span>
-            </a>
-            <a
-              href="tel:+919898563788"
-              className="px-5 py-3.5 rounded-full border border-[#FAF7F2]/40 hover:border-[#D4AF37] text-[#FAF7F2] text-xs uppercase tracking-widest font-medium transition-all flex items-center gap-2 cursor-pointer"
-            >
-              <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
-              <span>+91 98985 63788</span>
-            </a>
+            <div className="flex flex-wrap items-center justify-center gap-3 xl:gap-4">
+              <button
+                onClick={() => onOpenInquiry()}
+                className="px-7 xl:px-9 py-3.5 xl:py-4 rounded-full bg-[#FAF7F2] text-[#721B24] hover:bg-[#F3EDE2] text-xs xl:text-sm uppercase tracking-widest font-semibold transition-all shadow-xl hover:scale-105 cursor-pointer"
+              >
+                Request Venue Viewing
+              </button>
+              <a
+                href="tel:+918155089958"
+                className="px-5 xl:px-6 py-3.5 xl:py-4 rounded-full border border-[#FAF7F2]/40 hover:border-[#D4AF37] text-[#FAF7F2] text-xs xl:text-sm uppercase tracking-widest font-medium transition-all flex items-center gap-2 cursor-pointer"
+              >
+                <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
+                <span>+91 81550 89958</span>
+              </a>
+              <a
+                href="tel:+919898563788"
+                className="px-5 xl:px-6 py-3.5 xl:py-4 rounded-full border border-[#FAF7F2]/40 hover:border-[#D4AF37] text-[#FAF7F2] text-xs xl:text-sm uppercase tracking-widest font-medium transition-all flex items-center gap-2 cursor-pointer"
+              >
+                <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
+                <span>+91 98985 63788</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
