@@ -30,17 +30,16 @@ const getGutterSize = (): number => {
 };
 
 export const GalleryView: React.FC<GalleryViewProps> = ({ onOpenInquiry }) => {
-  const [selectedFilter, setSelectedFilter] = useState<'all' | 'weddings' | 'galas' | 'decor'>('all');
+  const [selectedFilter, setSelectedFilter] = useState<'all' | 'lawn' | 'banquet'>('all');
   const [isMasonryReady, setIsMasonryReady] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const masonryInstance = useRef<any>(null);
 
   const filters = [
-    { key: 'all', label: 'All Curations' },
-    { key: 'weddings', label: 'Royal Weddings' },
-    { key: 'galas', label: 'Twilight Galas' },
-    { key: 'decor', label: 'Decor Architecture' },
+    { key: 'all', label: 'All Photos' },
+    { key: 'lawn', label: 'Lawn' },
+    { key: 'banquet', label: 'Banquet' },
   ] as const;
 
   const filteredItems = selectedFilter === 'all'
@@ -85,6 +84,7 @@ export const GalleryView: React.FC<GalleryViewProps> = ({ onOpenInquiry }) => {
     // Progressive layout as individual images download
     imgInstance.on('progress', () => {
       if (masonryInstance.current) {
+        masonryInstance.current.reloadItems();
         masonryInstance.current.layout();
       }
     });
@@ -234,13 +234,13 @@ export const GalleryView: React.FC<GalleryViewProps> = ({ onOpenInquiry }) => {
               </p>
             </div>
 
-            {/* Filter Buttons */}
+            {/* Filter Buttons: All, Lawn, Banquet */}
             <div className="gsap-fade-up flex flex-wrap items-center gap-1.5 sm:gap-2 xl:gap-3">
               {filters.map((f) => (
                 <button
                   key={f.key}
                   onClick={() => setSelectedFilter(f.key)}
-                  className={`px-3 py-1.5 sm:px-4 sm:py-2 xl:px-5 xl:py-2.5 rounded-full text-[11px] sm:text-xs xl:text-sm font-sans tracking-wider uppercase transition-all cursor-pointer ${
+                  className={`px-4 py-2 xl:px-5 xl:py-2.5 rounded-full text-xs xl:text-sm font-sans tracking-wider uppercase transition-all cursor-pointer ${
                     selectedFilter === f.key
                       ? 'bg-[#721B24] text-[#FAF7F2] font-semibold border border-[#C5A880]/50 shadow-md'
                       : 'bg-[#F3EDE2] text-[#5C3D2E] hover:text-[#2A1C16] border border-[#C5A880]/30 hover:border-[#C5A880]'
@@ -263,15 +263,12 @@ export const GalleryView: React.FC<GalleryViewProps> = ({ onOpenInquiry }) => {
           >
             {filteredItems.map((item) => {
               const captionHtml = `
-                <div class="text-center max-w-xl mx-auto py-2">
-                  <div class="text-[11px] font-mono tracking-widest text-[#D4AF37] uppercase mb-1">
-                    ${item.venueName} • ${item.season} • ${item.categoryLabel}
-                  </div>
+                <div class="text-center max-w-md mx-auto py-2">
                   <div class="text-xl sm:text-2xl font-serif text-[#FAF7F2] font-light leading-snug mb-1">
                     ${item.title}
                   </div>
-                  <div class="text-xs text-[#FAF7F2]/80 font-sans font-light leading-relaxed">
-                    ${item.caption}
+                  <div class="text-xs font-mono tracking-widest text-[#D4AF37] uppercase">
+                    ${item.venue}
                   </div>
                 </div>
               `;
@@ -281,7 +278,7 @@ export const GalleryView: React.FC<GalleryViewProps> = ({ onOpenInquiry }) => {
                   key={item.id}
                   className="masonry-grid-item"
                 >
-                  <div className="group relative rounded-2xl overflow-hidden border border-[#C5A880]/40 bg-[#2A1C16] shadow-lg hover:shadow-2xl transition-all duration-500">
+                  <div className="group relative rounded-2xl overflow-hidden border border-[#C5A880]/30 bg-[#FAF7F2] shadow-md hover:shadow-2xl transition-all duration-500">
                     <a
                       href={item.image}
                       data-fancybox="visual-archive"
@@ -289,47 +286,28 @@ export const GalleryView: React.FC<GalleryViewProps> = ({ onOpenInquiry }) => {
                       className="block overflow-hidden relative cursor-zoom-in"
                     >
                       <img
-                        src={item.image}
+                        src={item.thumb}
                         alt={item.title}
-                        className="w-full h-auto block object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                        loading="lazy"
+                        className="w-full h-auto block object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
                       />
 
-                      {/* Hover Overlay with Editorial Badges */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#2A1C16]/95 via-[#2A1C16]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-6 pointer-events-none">
-                        <div className="flex justify-between items-start">
-                          <span className="px-3 py-1 rounded-full bg-[#FAF7F2]/90 backdrop-blur-md text-[#721B24] text-[10px] font-mono tracking-widest uppercase shadow-md">
-                            ${item.categoryLabel}
-                          </span>
-                          <div className="w-8 h-8 rounded-full bg-[#FAF7F2]/85 flex items-center justify-center text-[#2A1C16] shadow-md">
-                            <Maximize2 className="w-4 h-4 text-[#721B24]" />
-                          </div>
-                        </div>
-
-                        <div className="space-y-1 text-[#FAF7F2]">
-                          <div className="text-[11px] font-mono text-[#D4AF37] tracking-widest uppercase">
-                            ${item.venueName} • ${item.season}
-                          </div>
-                          <h3 className="text-lg sm:text-xl font-serif font-light leading-snug">
-                            ${item.title}
-                          </h3>
-                          <p className="text-xs text-[#F3EDE2]/80 font-sans font-light line-clamp-2">
-                            ${item.caption}
-                          </p>
+                      {/* Clean Hover Overlay with Zoom Indicator */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#2A1C16]/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-end p-4 pointer-events-none">
+                        <div className="w-8 h-8 rounded-full bg-[#FAF7F2]/90 backdrop-blur-sm flex items-center justify-center text-[#721B24] shadow-md">
+                          <Maximize2 className="w-4 h-4" />
                         </div>
                       </div>
                     </a>
 
-                    {/* Quick Card Footer with Direct Inquiry */}
-                    <div className="p-4 bg-[#FAF7F2] border-t border-[#C5A880]/30 flex items-center justify-between text-xs font-mono">
-                      <span className="text-[#5C3D2E] truncate pr-2 font-medium">
-                        {item.venueName}
+                    {/* Minimal Gallery Label: Title and Banquet or Lawn only */}
+                    <div className="px-4 py-3 bg-[#FAF7F2] border-t border-[#C5A880]/20 flex items-center justify-between gap-3">
+                      <h3 className="text-sm sm:text-base font-serif text-[#2A1C16] font-normal tracking-wide truncate">
+                        {item.title}
+                      </h3>
+                      <span className="flex-none px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-widest font-semibold bg-[#721B24]/10 text-[#721B24] border border-[#721B24]/25">
+                        {item.venue}
                       </span>
-                      <button
-                        onClick={() => onOpenInquiry(item.venueName)}
-                        className="flex-none px-3 py-1.5 rounded-full bg-[#721B24] text-[#FAF7F2] text-[10px] uppercase tracking-wider font-semibold hover:bg-[#58151C] transition-colors cursor-pointer"
-                      >
-                        Inquire
-                      </button>
                     </div>
                   </div>
                 </div>

@@ -23,12 +23,13 @@ test('Estate Data: Venues Integrity', () => {
 test('Estate Data: Gallery Curations Integrity', () => {
   assert.ok(GALLERY_ITEMS.length >= 6, 'Gallery must have at least 6 curations');
 
-  const allowedCategories = ['weddings', 'galas', 'decor'];
+  const allowedCategories = ['lawn', 'banquet'];
   for (const item of GALLERY_ITEMS) {
     assert.ok(allowedCategories.includes(item.category), `Category ${item.category} must be valid`);
-    assert.ok(item.image.startsWith('https://'), 'Image must be secure URL');
+    assert.ok(item.image.startsWith('/images/GalleryImages/'), 'Image must be local gallery image');
+    assert.ok(item.thumb.startsWith('/images/GalleryImages/Thumb/'), 'Thumb must be local thumbnail');
     assert.ok(item.title, 'Item must have a title');
-    assert.ok(item.venueName, 'Item must cite venue name');
+    assert.ok(['Lawn', 'Banquet'].includes(item.venue), 'Item venue must be Lawn or Banquet');
   }
 });
 

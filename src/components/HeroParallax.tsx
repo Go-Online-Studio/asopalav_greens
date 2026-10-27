@@ -71,14 +71,27 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
         }}
         className="relative w-full h-auto min-h-[580px] rounded-2xl overflow-hidden border border-[#C5A880]/40 shadow-2xl shadow-espresso-950/10 flex flex-col"
       >
-        {/* Background Image with Parallax Zoom */}
+        {/* Background Image with Parallax Zoom & Responsive Art Direction */}
         <div className="absolute inset-0 overflow-hidden bg-[#2A1C16]">
-          <img
-            ref={imageRef}
-            src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=2000&q=85"
-            alt="Asopalav Greens Grand Illuminated Banquet Hall"
-            className="w-full h-full object-cover object-center transform will-change-transform opacity-80"
-          />
+          <picture className="w-full h-full block">
+            {/* Mobile & Tablet in Vertical Portrait */}
+            <source
+              media="(orientation: portrait) and (max-width: 1024px)"
+              srcSet="/images/BannerMob.webp"
+            />
+            {/* Desktop & Any Device in Landscape */}
+            <source
+              media="(orientation: landscape)"
+              srcSet="/images/BannerDesktop.webp"
+            />
+            {/* Default Fallback */}
+            <img
+              ref={imageRef}
+              src="/images/BannerDesktop.webp"
+              alt="Asopalav Greens Grand Illuminated Banquet Hall"
+              className="w-full h-full object-cover object-center transform will-change-transform opacity-85"
+            />
+          </picture>
           {/* Subtle Warm Luxury Gradient Overlays */}
           <div
             ref={overlayRef}

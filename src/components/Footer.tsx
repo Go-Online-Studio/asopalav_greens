@@ -34,9 +34,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenInquiry }) => 
               className="group cursor-pointer focus:outline-none"
             >
               <img
-                src="/images/LOGO_Asopalav.webp"
+                src="/images/LOGO_AsopalavFooter.webp"
                 alt="Asopalav Greens"
-                className="h-12 sm:h-18 w-auto object-contain brightness-0 invert opacity-95 group-hover:opacity-100 transition-opacity"
+                className="h-12 sm:h-18 w-auto object-contain opacity-95 group-hover:opacity-100 transition-opacity"
               />
             </button>
             <p className="text-xs xl:text-sm text-[#FAF7F2]/60 font-sans tracking-widest uppercase">
