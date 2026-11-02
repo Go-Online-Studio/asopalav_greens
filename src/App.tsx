@@ -8,6 +8,8 @@ import { VenuesView } from './views/VenuesView';
 import { VenueDetailView } from './views/VenueDetailView';
 import { GalleryView } from './views/GalleryView';
 import { ContactView } from './views/ContactView';
+import { FloatingActionButtons } from './components/FloatingActionButtons';
+import { getWhatsAppUrl, debounce } from './utils/whatsapp';
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
@@ -20,6 +22,42 @@ export default function App() {
 
   const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
   const [inquirySelectedVenue, setInquirySelectedVenue] = useState<string>('');
+
+  // Global dynamic WhatsApp link updater for .set-url-target elements on resize & load
+  useEffect(() => {
+    const updateWhatsAppTargets = () => {
+      const dynamicUrl = getWhatsAppUrl('Hello Asopalav Greens, I would like to inquire for a wedding celebration.');
+      document.querySelectorAll<HTMLAnchorElement>('.set-url-target, a[href*="whatsapp.com"], a[href*="wa.me"]').forEach((el) => {
+        // preserve custom text if element already had custom text query param
+        const currentHref = el.getAttribute('href') || '';
+        let customText: string | undefined;
+        try {
+          if (currentHref.includes('?')) {
+            const parsed = new URL(currentHref, window.location.origin);
+            customText = parsed.searchParams.get('text') || undefined;
+          }
+        } catch (e) {
+          // fallback
+        }
+        el.setAttribute('href', getWhatsAppUrl(customText || 'Hello Asopalav Greens, I would like to inquire for a wedding celebration.'));
+        el.setAttribute('target', '_blank');
+        el.setAttribute('rel', 'noopener noreferrer');
+      });
+    };
+
+    updateWhatsAppTargets();
+    const debouncedUpdate = debounce(updateWhatsAppTargets, 150);
+
+    window.addEventListener('resize', debouncedUpdate);
+    window.addEventListener('orientationchange', debouncedUpdate);
+    window.addEventListener('load', debouncedUpdate);
+
+    return () => {
+      window.removeEventListener('resize', debouncedUpdate);
+      window.removeEventListener('orientationchange', debouncedUpdate);
+      window.removeEventListener('load', debouncedUpdate);
+    };
+  }, [currentPath]);
 
   // Handle browser back/forward history navigation
   useEffect(() => {
@@ -42,7 +80,7 @@ export default function App() {
     if (venueName) {
       setInquirySelectedVenue(venueName);
     } else {
-      setInquirySelectedVenue('The Banquet (30,000 Sq. Ft.)');
+      setInquirySelectedVenue('The Banquet (9,000 Sq. Ft.)');
     }
     setInquiryModalOpen(true);
   };
@@ -110,6 +148,9 @@ export default function App() {
           onClose={() => setInquiryModalOpen(false)}
           preselectedVenue={inquirySelectedVenue}
         />
+
+        {/* Global Floating Action Buttons (Phone call & Dynamic WhatsApp) */}
+        <FloatingActionButtons />
       </div>
     </SmoothScrollProvider>
   );

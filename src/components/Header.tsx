@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Sparkles, Phone, Compass, MapPin } from 'lucide-react';
+import { useWhatsAppUrl } from '../utils/whatsapp';
 
 interface HeaderProps {
   currentPath: string;
@@ -14,6 +15,7 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const whatsappUrl = useWhatsAppUrl('Hello Asopalav Greens, I would like to inquire for a wedding celebration.');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,10 +26,10 @@ export const Header: React.FC<HeaderProps> = ({
   }, []);
 
   const navLinks = [
-    { label: 'The Grounds', path: '/' },
+    { label: 'Home', path: '/' },
     { label: 'Spaces', path: '/venues' },
-    { label: 'Visual Archive', path: '/gallery' },
-    { label: 'Concierge & Dates', path: '/contact' },
+    { label: 'Gallery', path: '/gallery' },
+    { label: 'Contact', path: '/contact' },
   ];
 
   return (
@@ -90,7 +92,7 @@ export const Header: React.FC<HeaderProps> = ({
             className="hidden sm:inline-flex items-center gap-2 bg-[#721B24] hover:bg-[#58151C] text-[#FAF7F2] tracking-[0.18em] text-xs xl:text-sm uppercase px-5 sm:px-6 xl:px-7 py-2.5 xl:py-3 rounded-full border border-[#C5A880]/30 shadow-md shadow-wine-900/20 transition-all duration-300 hover:scale-[1.02] cursor-pointer"
           >
             <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
-            <span>Inquire for 2026–2027</span>
+            <span>Inquire Now</span>
           </button>
 
           {/* Mobile Menu Button */}
@@ -137,17 +139,17 @@ export const Header: React.FC<HeaderProps> = ({
                 className="w-full py-3 rounded-full bg-[#721B24] text-[#FAF7F2] text-xs uppercase tracking-widest font-medium flex items-center justify-center gap-2 cursor-pointer shadow-md"
               >
                 <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
-                Inquire for 2026–2027
+                Inquire Now
               </button>
 
               <a
-                href="https://wa.me/918155089958?text=Hello%20Asopalav%20Greens%2C%20I%20would%20like%20to%20inquire%20for%20a%20wedding%20celebration."
+                href={whatsappUrl}
                 target="_blank"
-                rel="noreferrer"
-                className="w-full py-2.5 rounded-full border border-[#C5A880]/50 text-[#2A1C16] text-xs uppercase tracking-widest text-center flex items-center justify-center gap-2 bg-[#F3EDE2] hover:bg-[#FAF7F2] transition-colors"
+                rel="noopener noreferrer"
+                className="w-full py-2.5 rounded-full border border-[#C5A880]/50 text-[#2A1C16] text-xs uppercase tracking-widest text-center flex items-center justify-center gap-2 bg-[#F3EDE2] hover:bg-[#FAF7F2] transition-colors set-url-target"
               >
                 <Phone className="w-3.5 h-3.5 text-[#5C3D2E]" />
-                WhatsApp Concierge
+                WhatsApp Inquiry
               </a>
             </div>
           </div>

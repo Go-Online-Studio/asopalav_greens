@@ -49,7 +49,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenInquiry }) => 
               onClick={onOpenInquiry}
               className="px-6 xl:px-8 py-3 xl:py-3.5 rounded-full bg-[#721B24] hover:bg-[#8A242E] text-[#FAF7F2] text-xs xl:text-sm uppercase tracking-widest font-medium border border-[#C5A880]/40 transition-all cursor-pointer shadow-md"
             >
-              Inquire For 2026–2027
+              Inquire For Availability
             </button>
 
             <button
@@ -69,9 +69,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenInquiry }) => 
             <div className="text-xs xl:text-sm font-mono text-[#C5A880] tracking-widest uppercase">
               LOCATION & COORDINATES
             </div>
-            <h3 className="text-xl sm:text-2xl md:text-3xl xl:text-4xl font-serif text-[#FAF7F2] font-light leading-snug max-w-xl xl:max-w-2xl">
-              Sevasi - Canal Rd, opp. Athletes Arena, near Jalsa Apartment, <br className="hidden sm:inline" />
-              Sevasi, Vadodara, Gujarat 391101, India.
+            <h3 className="text-xl sm:text-2xl md:text-3xl xl:text-4xl font-serif font-light leading-snug max-w-xl xl:max-w-2xl">
+              <a className="text-[#FAF7F2] hover:text-[#ffffff] transition-colors cursor-pointer" target="_blank" rel="noopener noreferrer" href="https://maps.app.goo.gl/7GF5DqUVsYPV5fwn7">Sevasi - Canal Rd, opp. Athletes Arena, near Jalsa Apartment, Vadodara, Gujarat 391101, India.</a>
             </h3>
             <div className="pt-2 flex flex-wrap items-center justify-center md:justify-start gap-3 sm:gap-6 text-xs xl:text-sm font-mono text-[#FAF7F2]/70">
               <span className="flex items-center gap-2">
@@ -79,9 +78,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenInquiry }) => 
                 PLUS CODE: 845F+J3 Vadodara
               </span>
               <span>•</span>
-              <span>15 MIN FROM ALKAPURI</span>
+              <span>20 MIN FROM ALKAPURI</span>
               <span>•</span>
-              <span>25 MIN FROM BDQ AIRPORT</span>
+              <span>32 MIN FROM BDQ AIRPORT</span>
             </div>
             <div className="text-xs xl:text-sm font-mono text-[#D4AF37] pt-1">
               ✓ Wheelchair Accessible Parking & Entrances/Exits
@@ -91,7 +90,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenInquiry }) => 
           {/* Col 7-9: Navigation */}
           <div className="lg:col-span-3 space-y-4 flex flex-col items-center md:items-start">
             <div className="text-xs xl:text-sm font-mono text-[#C5A880] tracking-widest uppercase">
-              THE PORTFOLIO
+              EXPLORE
             </div>
             <ul className="space-y-3 text-sm xl:text-base font-sans font-light text-[#FAF7F2]/80 flex flex-col items-center md:items-start">
               <li>
@@ -99,7 +98,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenInquiry }) => 
                   onClick={() => onNavigate('/')}
                   className="hover:text-[#C5A880] transition-colors cursor-pointer"
                 >
-                  The Grounds (Overview)
+                  Home
                 </button>
               </li>
               <li>
@@ -107,7 +106,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenInquiry }) => 
                   onClick={() => onNavigate('/venues/banquet')}
                   className="hover:text-[#C5A880] transition-colors cursor-pointer"
                 >
-                  The Banquet (30,000 Sq. Ft.)
+                  The Banquet (9,000 Sq. Ft.)
                 </button>
               </li>
               <li>
@@ -115,7 +114,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenInquiry }) => 
                   onClick={() => onNavigate('/venues/lawn')}
                   className="hover:text-[#C5A880] transition-colors cursor-pointer"
                 >
-                  The Lawn (Party Plot 9,000 Sq. Ft.)
+                  The Lawn (Party Plot 30,000 Sq. Ft.)
                 </button>
               </li>
               <li>
@@ -123,7 +122,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenInquiry }) => 
                   onClick={() => onNavigate('/venues')}
                   className="hover:text-[#C5A880] transition-colors cursor-pointer"
                 >
-                  All Spaces Catalog
+                  All Spaces
                 </button>
               </li>
               <li>
@@ -131,16 +130,24 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenInquiry }) => 
                   onClick={() => onNavigate('/gallery')}
                   className="hover:text-[#C5A880] transition-colors cursor-pointer"
                 >
-                  Visual Archive
+                  Gallery
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('/contact')}
+                  className="hover:text-[#C5A880] transition-colors cursor-pointer"
+                >
+                  Contact & Bookings
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Col 10-12: Private Concierge */}
+          {/* Col 10-12: Contact Details */}
           <div className="lg:col-span-3 space-y-4 flex flex-col items-center md:items-start">
             <div className="text-xs font-mono text-[#C5A880] tracking-widest uppercase">
-              PRIVATE CONCIERGE
+              CONTACT US
             </div>
             <div className="space-y-3 text-sm font-sans font-light text-[#FAF7F2]/80 flex flex-col items-center md:items-start">
               <p className="flex flex-wrap items-center justify-center md:justify-start gap-2">

@@ -111,7 +111,7 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
         </div>
 
         {/* Editorial Text Content Overlay */}
-        <div className="relative z-10 w-full flex-1 flex flex-col justify-between items-center text-center p-6 sm:p-12 gap-6 sm:gap-8">
+        <div className="relative z-10 w-full flex-1 flex flex-col justify-center items-center text-center p-6 sm:p-12 gap-6 sm:gap-8">
           {/* Top Spacing / Micro Emblem */}
           <div className="pt-2">
             <div className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-[#C5A880]/40 bg-[#2A1C16]/60 backdrop-blur-md text-[#C5A880] text-xs font-serif">
@@ -124,21 +124,21 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
             {/* Crimson Badge */}
             <div className="inline-flex items-center gap-2 px-3 sm:px-4 xl:px-5 py-1.5 xl:py-2 rounded-full bg-[#721B24] border border-[#C5A880]/30 text-[#FAF7F2] text-[9px] sm:text-xs xl:text-sm tracking-[0.16em] sm:tracking-[0.25em] uppercase font-medium shadow-lg shadow-[#721B24]/30 whitespace-nowrap">
               <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#D4AF37]" />
-              <span>Sanctuary of Grand Celebrations</span>
+              <span>Luxury Wedding & Event Venues</span>
               <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#D4AF37]" />
             </div>
 
             {/* Architectural Massive Serif Headline */}
             <h1 className="text-2xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-serif tracking-tight text-[#FAF7F2] leading-[1.08] sm:leading-[1.03] font-light">
-              THE ARCHITECTURE OF <br className="hidden sm:inline" />
+              TIMELESS VENUES FOR <br className="hidden sm:inline" />
               <span className="italic font-normal text-[#FAF7F2] tracking-normal">
-                TIMELESS UNIONS
+                UNFORGETTABLE CELEBRATIONS
               </span>
             </h1>
 
             {/* Single Sentence Poetic Caption */}
             <p className="max-w-2xl xl:max-w-3xl mx-auto text-xs sm:text-lg xl:text-xl text-[#F3EDE2]/90 font-light tracking-wide leading-relaxed font-sans px-2">
-              Vadodara’s benchmark open-air estate and pillarless banquet hall, sculpted for generational ceremonies.
+              Vadodara’s premier open-air party plot and luxury pillarless banquet hall, designed for grand weddings and family gatherings.
             </p>
 
             {/* CTA Buttons */}
@@ -148,30 +148,16 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 xl:px-10 py-3.5 xl:py-4 rounded-full bg-[#721B24] hover:bg-[#5a151c] text-[#FAF7F2] tracking-[0.16em] sm:tracking-[0.2em] text-[11px] sm:text-xs xl:text-sm uppercase font-medium border border-[#C5A880]/40 shadow-xl shadow-wine-950/40 transition-all duration-300 hover:scale-[1.02] cursor-pointer whitespace-nowrap"
               >
                 <Calendar className="w-3.5 h-3.5 text-[#D4AF37]" />
-                Inquire For 2026–2027
+                Inquire For Dates
               </button>
 
               <button
                 onClick={onExploreSpaces}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-7 xl:px-9 py-3.5 xl:py-4 rounded-full bg-transparent hover:bg-[#FAF7F2]/10 backdrop-blur-md text-[#FAF7F2] tracking-[0.16em] sm:tracking-[0.2em] text-[11px] sm:text-xs xl:text-sm uppercase font-medium border border-[#C5A880]/40 hover:border-[#C5A880] transition-all duration-300 cursor-pointer whitespace-nowrap"
               >
-                Explore The Grounds
+                Explore Venues
                 <ArrowDownRight className="w-3.5 h-3.5 text-[#C5A880]" />
               </button>
-            </div>
-          </div>
-
-          {/* Bottom Bar Metrics */}
-          <div className="w-full max-w-4xl xl:max-w-6xl mx-auto pt-4 border-t border-[#C5A880]/20 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left text-[10px] sm:text-xs xl:text-sm font-mono text-[#F3EDE2]/80">
-            <div className="flex items-center gap-2">
-              <span className="text-[#C5A880]">I.</span>
-              <span className="tracking-wider">39,000+ SQ. FT. ESTATE</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2F3E34] border border-[#C5A880]/50" />
-              <span className="tracking-wider text-[9px] sm:text-[11px] xl:text-xs text-[#C5A880] uppercase">
-                DIARY OPEN 2026–27
-              </span>
             </div>
           </div>
         </div>

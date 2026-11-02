@@ -58,18 +58,18 @@ export const PinnedSpaces: React.FC<PinnedSpacesProps> = ({
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-xs xl:text-sm font-mono text-[#5C3D2E] tracking-[0.25em] uppercase whitespace-nowrap">
               <span className="w-1.5 h-1.5 rounded-full bg-[#721B24]" />
-              CURATED ARCHITECTURAL SANCTUARIES
+              LUXURY WEDDING VENUES
             </div>
             <h2 className="text-3xl sm:text-5xl xl:text-6xl 2xl:text-7xl font-serif text-[#2A1C16] font-light leading-tight">
-              THE TWO <span className="italic font-normal">SPACES</span>
+              OUR TWO <span className="italic font-normal">SPACES</span>
             </h2>
             <p className="text-xs sm:text-sm xl:text-base text-[#5C3D2E] font-sans font-light">
-              Vadodara’s signature indoor banquet and open-air party plot.
+              Vadodara’s signature indoor banquet hall and open-air party plot.
             </p>
           </div>
 
           <div className="hidden sm:flex items-center gap-2 text-xs xl:text-sm font-mono text-[#721B24] tracking-widest uppercase">
-            <span>VOLUME 2026–2027</span>
+            <span>VENUE OVERVIEW</span>
           </div>
         </div>
       </div>
@@ -123,7 +123,7 @@ export const PinnedSpaces: React.FC<PinnedSpacesProps> = ({
                       <>
                         <div className="flex items-center gap-3 text-sm sm:text-base xl:text-lg text-[#FAF7F2]/90 font-sans">
                           <span className="w-2.5 h-2.5 rounded-full bg-[#D4AF37] flex-none" />
-                          <span className="font-semibold text-[#D4AF37]">30,000 sq.ft</span>
+                          <span className="font-semibold text-[#D4AF37]">9,000 sq.ft</span>
                           <span className="text-[#F3EDE2]/60">• Clear-span indoor hall</span>
                         </div>
                         <div className="flex items-center gap-3 text-sm sm:text-base xl:text-lg text-[#FAF7F2]/90 font-sans">
@@ -151,7 +151,7 @@ export const PinnedSpaces: React.FC<PinnedSpacesProps> = ({
                       <>
                         <div className="flex items-center gap-3 text-sm sm:text-base xl:text-lg text-[#FAF7F2]/90 font-sans">
                           <span className="w-2.5 h-2.5 rounded-full bg-[#D4AF37] flex-none" />
-                          <span className="font-semibold text-[#D4AF37]">Party plot :- 9,000 sq. ft</span>
+                          <span className="font-semibold text-[#D4AF37]">Party plot :- 30,000 sq. ft</span>
                         </div>
                         <div className="flex items-center gap-3 text-sm sm:text-base xl:text-lg text-[#FAF7F2]/90 font-sans">
                           <span className="w-2.5 h-2.5 rounded-full bg-[#D4AF37] flex-none" />
@@ -209,18 +209,18 @@ export const PinnedSpaces: React.FC<PinnedSpacesProps> = ({
               <span>EXCLUSIVE COMBINED BOOKING</span>
             </div>
             <h4 className="text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl font-serif font-light">
-              Concurrent Banquet &amp; Lawn Access
+              Combined Banquet &amp; Lawn Booking
             </h4>
             <p className="text-xs sm:text-sm xl:text-base 2xl:text-lg text-[#FAF7F2]/80 font-sans font-light max-w-xl xl:max-w-2xl leading-relaxed">
-              Enjoy complete exclusivity across both indoor and open-air realms. Perfect for monumental multi-phase weddings requiring concurrent indoor dining, sangeet stages, and starlit open-sky mandaps.
+              Book both our indoor banquet and open-air lawn together for complete celebration privacy. Ideal for grand multi-day Indian weddings with simultaneous indoor dining, musical sangeets, and starlit pheras.
             </p>
           </div>
 
           <button
-            onClick={() => onOpenInquiry ? onOpenInquiry('Combined Estate (Banquet & Lawn)') : undefined}
+            onClick={() => onOpenInquiry ? onOpenInquiry('Combined Venue (Banquet & Lawn)') : undefined}
             className="shrink-0 px-7 py-3 xl:px-9 xl:py-3.5 rounded-full bg-[#FAF7F2] text-[#721B24] hover:bg-[#F3EDE2] text-xs xl:text-sm font-semibold uppercase tracking-widest transition-all cursor-pointer shadow-lg hover:scale-105"
           >
-            Inquire Combined Estate
+            Inquire For Both Venues
           </button>
         </div>
       </div>

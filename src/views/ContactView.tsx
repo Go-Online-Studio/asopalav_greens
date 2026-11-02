@@ -5,6 +5,7 @@ import { useGSAP } from '@gsap/react';
 import { WordReveal } from '../utils/animations';
 import { FAQSection } from '../components/FAQSection';
 import { Phone, Mail, MapPin, Compass, Clock, Check, Sparkles, ArrowRight, MessageCircle, Accessibility } from 'lucide-react';
+import { openWhatsApp, useWhatsAppUrl } from '../utils/whatsapp';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -15,28 +16,63 @@ interface ContactViewProps {
 }
 
 export const ContactView: React.FC<ContactViewProps> = ({ onOpenInquiry }) => {
-  const [celebrationType, setCelebrationType] = useState('Royal Wedding & Reception');
-  const [preferredVenue, setPreferredVenue] = useState('The Banquet (30,000 Sq. Ft.)');
+  const [celebrationType, setCelebrationType] = useState('Wedding & Reception');
+  const [preferredVenue, setPreferredVenue] = useState('The Banquet (9,000 Sq. Ft.)');
   const [guestCount, setGuestCount] = useState(1200);
-  const [preferredDate, setPreferredDate] = useState('2026-12-10');
-  const [timeSlot, setTimeSlot] = useState('Twilight & Evening Gala (05:00 PM – Midnight)');
+  const [preferredDate, setPreferredDate] = useState(() => new Date().toISOString().split('T')[0]);
+  const [timeSlot, setTimeSlot] = useState('Evening Celebration (05:00 PM – Midnight)');
   const [patronName, setPatronName] = useState('');
   const [contactNumber, setContactNumber] = useState('');
   const [patronEmail, setPatronEmail] = useState('');
   const [specialRemarks, setSpecialRemarks] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const validateForm = () => {
+    const errs: { [key: string]: string } = {};
+    if (!celebrationType.trim()) {
+      errs.celebrationType = 'Please select a type of celebration.';
+    }
+    if (!preferredVenue.trim()) {
+      errs.preferredVenue = 'Please select your preferred venue space.';
+    }
+    if (!preferredDate) {
+      errs.preferredDate = 'Please select your preferred date.';
+    }
+    if (!timeSlot.trim()) {
+      errs.timeSlot = 'Please select an event timing.';
+    }
+    if (!patronName.trim()) {
+      errs.patronName = 'Please enter your full name.';
+    }
+    const cleanPhone = contactNumber.replace(/[\s\-()]/g, '');
+    if (!cleanPhone) {
+      errs.contactNumber = 'Please enter your phone / WhatsApp number.';
+    } else if (!/^(?:\+?91)?[6789]\d{9}$/.test(cleanPhone)) {
+      errs.contactNumber = 'Please enter a valid 10-digit mobile number.';
+    }
+    if (patronEmail.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(patronEmail.trim())) {
+      errs.patronEmail = 'Please enter a valid email address.';
+    }
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateForm()) return;
+
+    // Direct WhatsApp dispatch with structured message (dynamically mobile vs desktop)
+    const msg = `Hello Asopalav Greens team,\n\nI wish to inquire about booking the venue.\n• Name: ${patronName.trim()}\n• Phone: ${contactNumber.trim()}\n• Email: ${patronEmail.trim() || 'Not provided'}\n• Celebration: ${celebrationType}\n• Venue: ${preferredVenue}\n• Guests: ${guestCount}\n• Preferred Date: ${preferredDate}\n• Timing: ${timeSlot}${specialRemarks.trim() ? `\n• Notes: ${specialRemarks.trim()}` : ''}\n\nPlease share venue details and date availability.`;
+    openWhatsApp(msg);
+
     setSubmitted(true);
   };
 
   const handleWhatsAppChat = () => {
-    const msg = encodeURIComponent(
-      `Hello Concierge at Asopalav Greens,\n\nI wish to arrange a private viewing of the estate.\n• Name: ${patronName || 'Prospective Host'}\n• Celebration: ${celebrationType}\n• Venue: ${preferredVenue}\n• Guests: ${guestCount}\n• Preferred Date: ${preferredDate}\n\nPlease let me know available slots.`
-    );
-    window.open(`https://wa.me/918155089958?text=${msg}`, '_blank');
+    const msg = `Hello Asopalav Greens team,\n\nI wish to arrange a venue visit.\n• Name: ${patronName || 'Prospective Host'}\n• Celebration: ${celebrationType}\n• Venue: ${preferredVenue}\n• Guests: ${guestCount}\n• Preferred Date: ${preferredDate}\n\nPlease let me know the available time slots.`;
+    openWhatsApp(msg);
   };
 
   useGSAP(
@@ -138,14 +174,14 @@ export const ContactView: React.FC<ContactViewProps> = ({ onOpenInquiry }) => {
           <div className="space-y-4 max-w-3xl xl:max-w-4xl">
             <div className="gsap-fade-up flex items-center gap-2 text-xs xl:text-sm font-mono text-[#721B24] tracking-[0.25em] uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-[#721B24]" />
-              ESTATE PROTOCOL & DIARY RESERVATIONS
+              BOOKINGS &amp; INQUIRIES
             </div>
             <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-serif text-[#2A1C16] font-light leading-[1.04]">
-              <WordReveal text="CONCIERGE &" />{' '}
-              <span className="italic font-normal"><WordReveal text="DATES" /></span>
+              <WordReveal text="CONTACT &" />{' '}
+              <span className="italic font-normal"><WordReveal text="BOOKINGS" /></span>
             </h1>
             <p className="gsap-fade-up text-sm sm:text-base xl:text-lg text-[#5C3D2E] font-sans font-light leading-relaxed">
-              Inscribe your celebratory vision into our rolling diary. We welcome patrons and bridal architects for private walk-throughs by prior appointment.
+              We look forward to helping you plan your special day. Book an in-person venue visit or get in touch with our team to check auspicious date availability.
             </p>
           </div>
         </div>
@@ -159,13 +195,13 @@ export const ContactView: React.FC<ContactViewProps> = ({ onOpenInquiry }) => {
             <div className="lg:col-span-5 space-y-8">
               <div className="space-y-4">
                 <span className="gsap-fade-up text-xs font-mono text-[#721B24] tracking-widest uppercase">
-                  COORDINATES & REACH
+                  LOCATION &amp; ACCESSIBILITY
                 </span>
                 <h2 className="text-3xl font-serif text-[#2A1C16] font-light">
-                  <WordReveal text="The Sevasi Sanctuary" />
+                  <WordReveal text="Convenient Sevasi Location" />
                 </h2>
                 <p className="gsap-fade-up text-sm text-[#5C3D2E] font-sans font-light leading-relaxed">
-                  Positioned in Vadodara's most distinguished tranquil enclave along Sevasi-Bhimpura Main Road, insulated from city noise while remaining easily accessible for high-profile cortèges.
+                  Located along Sevasi-Bhimpura Main Road in Vadodara, offering a peaceful green setting that is easily accessible for your guests, baraat processions, and event vehicles.
                 </p>
               </div>
 
@@ -175,9 +211,9 @@ export const ContactView: React.FC<ContactViewProps> = ({ onOpenInquiry }) => {
                 <MapPin className="w-5 h-5 text-[#721B24] flex-none mt-1" />
                 <div className="space-y-1">
                   <div className="text-base font-serif text-[#2A1C16] font-medium leading-snug">
-                    Asopalav Greens Banquet & Party Plot <br />
+                    <a href="https://maps.app.goo.gl/7GF5DqUVsYPV5fwn7" target="_blank" rel="noopener noreferrer" className="text-[#2A1C16] hover:text-[#721B24] transition-colors">Asopalav Greens Banquet & Party Plot <br />
                     Sevasi - Canal Rd, opp. Athletes Arena, near Jalsa Apartment, <br />
-                    Sevasi, Vadodara, Gujarat 391101, India.
+                    Sevasi, Vadodara, Gujarat 391101, India.</a>
                   </div>
                 </div>
               </div>
@@ -219,40 +255,40 @@ export const ContactView: React.FC<ContactViewProps> = ({ onOpenInquiry }) => {
               </div>
               <div className="gsap-stagger grid grid-cols-3 gap-2 sm:gap-3 text-center">
                 <div className="p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white border border-[#C5A880]/30">
-                  <div className="text-sm sm:text-xl font-serif font-bold text-[#721B24]">15 MIN</div>
+                  <div className="text-sm sm:text-xl font-serif font-bold text-[#721B24]">20 MIN</div>
                   <div className="text-[9px] sm:text-[10px] font-mono text-[#5C3D2E] uppercase mt-0.5 sm:mt-1">Alkapuri</div>
                 </div>
                 <div className="p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white border border-[#C5A880]/30">
-                  <div className="text-sm sm:text-xl font-serif font-bold text-[#721B24]">25 MIN</div>
+                  <div className="text-sm sm:text-xl font-serif font-bold text-[#721B24]">32 MIN</div>
                   <div className="text-[9px] sm:text-[10px] font-mono text-[#5C3D2E] uppercase mt-0.5 sm:mt-1">BDQ Airport</div>
                 </div>
                 <div className="p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white border border-[#C5A880]/30">
-                  <div className="text-sm sm:text-xl font-serif font-bold text-[#721B24]">20 MIN</div>
+                  <div className="text-sm sm:text-xl font-serif font-bold text-[#721B24]">22 MIN</div>
                   <div className="text-[9px] sm:text-[10px] font-mono text-[#5C3D2E] uppercase mt-0.5 sm:mt-1">Vadodara Rly</div>
                 </div>
               </div>
             </div>
 
-            {/* WhatsApp Concierge Button */}
+            {/* WhatsApp Support Button */}
             <div className="gsap-scale-in p-5 sm:p-6 rounded-3xl bg-[#2A1C16] text-[#FAF7F2] border border-[#C5A880]/40 space-y-4 shadow-xl">
               <div className="flex items-center gap-2 text-xs font-mono text-[#D4AF37] tracking-widest uppercase">
                 <MessageCircle className="w-4 h-4" />
-                INSTANT PRIVATE CHANNEL
+                INSTANT WHATSAPP SUPPORT
               </div>
               <div className="text-base sm:text-lg font-serif">
-                Prefer immediate liaison with our Head Curator?
+                Prefer to chat directly with our team?
               </div>
               <button
                 onClick={handleWhatsAppChat}
                 className="w-full py-3 sm:py-3.5 rounded-full bg-[#FAF7F2] text-[#2A1C16] hover:bg-[#F3EDE2] text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg"
               >
                 <Phone className="w-4 h-4 text-[#721B24]" />
-                Launch WhatsApp Concierge
+                Chat on WhatsApp
               </button>
             </div>
           </div>
 
-          {/* Right Column: Booking Form (bg-[#FAF7F2] stands out cleanly against darker cream section) */}
+          {/* Right Column: Booking Form */}
           <div className="gsap-scale-in lg:col-span-7 bg-[#FAF7F2] rounded-3xl border border-[#C5A880]/40 p-4 sm:p-12 shadow-xl relative">
             {submitted ? (
               <div className="py-12 text-center space-y-6">
@@ -261,13 +297,13 @@ export const ContactView: React.FC<ContactViewProps> = ({ onOpenInquiry }) => {
                 </div>
                 <div className="space-y-2">
                   <div className="text-xs font-mono text-[#721B24] tracking-widest uppercase">
-                    OFFICIAL INSCRIPTION COMPLETE
+                    INQUIRY RECEIVED
                   </div>
                   <h3 className="text-3xl font-serif text-[#2A1C16]">
-                    We Await Welcoming You
+                    Thank You For Reaching Out
                   </h3>
                   <p className="max-w-md mx-auto text-sm text-[#5C3D2E] font-light leading-relaxed">
-                    Thank you, <span className="font-semibold">{patronName}</span>. Your requested dates for <span className="font-semibold">{preferredDate}</span> have been forwarded directly to our senior estate managers.
+                    Thank you, <span className="font-semibold">{patronName}</span>. We have received your inquiry for <span className="font-semibold">{preferredDate}</span>. Our event coordinator will get in touch with you shortly.
                   </p>
                 </div>
 
@@ -285,32 +321,37 @@ export const ContactView: React.FC<ContactViewProps> = ({ onOpenInquiry }) => {
                 <div className="space-y-2 border-b border-[#C5A880]/30 pb-4">
                   <div className="inline-flex items-center gap-2 text-xs font-mono text-[#721B24] tracking-widest uppercase">
                     <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
-                    ESTATE DIARY REGISTRATION
+                    EVENT INQUIRY &amp; DATE CHECK
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-serif text-[#2A1C16] font-light">
-                    <WordReveal text="Inquire For 2026–2027 Dates" />
+                    <WordReveal text="Check Auspicious Dates" />
                   </h3>
                   <p className="gsap-fade-up text-xs text-[#5C3D2E] font-light">
-                    Complete the formal dossier below for priority date allocation.
+                    Fill in your celebration details below and our team will get in touch promptly.
                   </p>
                 </div>
 
                 {/* Celebration Type */}
                 <div className="gsap-fade-up space-y-2">
                   <label className="text-xs font-mono uppercase tracking-wider text-[#5C3D2E]">
-                    Celebration Format *
+                    Type of Celebration *
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {[
-                      'Royal Wedding & Reception',
-                      'Grand Sangeet & Musical Eve',
-                      'Sacred Pheras & Mandap Ritual',
-                      'High-Echelon Corporate Gala',
+                      'Wedding & Reception',
+                      'Sangeet & Musical Night',
+                      'Sacred Pheras & Mandap Ceremony',
+                      'Corporate Gala & Annual Event',
                     ].map((type) => (
                       <button
                         key={type}
                         type="button"
-                        onClick={() => setCelebrationType(type)}
+                        onClick={() => {
+                          setCelebrationType(type);
+                          if (errors.celebrationType) {
+                            setErrors((prev) => ({ ...prev, celebrationType: '' }));
+                          }
+                        }}
                         className={`p-3 rounded-xl border text-left text-xs font-sans transition-all cursor-pointer ${
                           celebrationType === type
                             ? 'bg-[#FAF7F2] border-[#721B24] text-[#721B24] font-semibold ring-1 ring-[#721B24]'
@@ -321,28 +362,41 @@ export const ContactView: React.FC<ContactViewProps> = ({ onOpenInquiry }) => {
                       </button>
                     ))}
                   </div>
+                  {errors.celebrationType && (
+                    <p className="text-xs text-red-600 font-sans mt-1">{errors.celebrationType}</p>
+                  )}
                 </div>
 
                 {/* Preferred Venue Space */}
                 <div className="gsap-fade-up space-y-2">
                   <label className="text-xs font-mono uppercase tracking-wider text-[#5C3D2E]">
-                    Preferred Space
+                    Preferred Space *
                   </label>
                   <select
                     value={preferredVenue}
-                    onChange={(e) => setPreferredVenue(e.target.value)}
-                    className="w-full p-3 rounded-xl border border-[#C5A880]/50 bg-white text-xs font-sans text-[#2A1C16] focus:outline-none focus:ring-1 focus:ring-[#721B24]"
+                    onChange={(e) => {
+                      setPreferredVenue(e.target.value);
+                      if (errors.preferredVenue) {
+                        setErrors((prev) => ({ ...prev, preferredVenue: '' }));
+                      }
+                    }}
+                    className={`w-full p-3 rounded-xl border bg-white text-xs font-sans text-[#2A1C16] focus:outline-none focus:ring-1 focus:ring-[#721B24] ${
+                      errors.preferredVenue ? 'border-red-500' : 'border-[#C5A880]/50'
+                    }`}
                   >
-                    <option value="The Banquet (30,000 Sq. Ft.)">The Banquet (30,000 Sq. Ft. • 750 Seating)</option>
-                    <option value="The Lawn (9,000 Sq. Ft.)">The Lawn (9,000 Sq. Ft. Party Plot • 1,200 Seating)</option>
-                    <option value="Combined Estate (Both Spaces)">Combined Estate Booking (Banquet & Lawn)</option>
+                    <option value="The Banquet (9,000 Sq. Ft.)">The Banquet (9,000 Sq. Ft. • 750 Seating)</option>
+                    <option value="The Lawn (30,000 Sq. Ft.)">The Lawn (Party Plot 30,000 Sq. Ft. • 1,200 Seating)</option>
+                    <option value="Combined Venue (Both Spaces)">Combined Venue Booking (Banquet & Lawn)</option>
                   </select>
+                  {errors.preferredVenue && (
+                    <p className="text-xs text-red-600 font-sans mt-1">{errors.preferredVenue}</p>
+                  )}
                 </div>
 
                 {/* Guest Count Slider */}
                 <div className="gsap-fade-up space-y-3 bg-white p-4 rounded-2xl border border-[#C5A880]/30">
                   <div className="flex items-center justify-between text-xs font-mono">
-                    <span className="uppercase text-[#5C3D2E] tracking-wider">Estimated Patronage</span>
+                    <span className="uppercase text-[#5C3D2E] tracking-wider">Estimated Guests</span>
                     <span className="px-3 py-1 rounded-full bg-[#721B24] text-[#FAF7F2] font-bold">
                       {guestCount.toLocaleString()} GUESTS
                     </span>
@@ -358,8 +412,8 @@ export const ContactView: React.FC<ContactViewProps> = ({ onOpenInquiry }) => {
                   />
                   <div className="flex justify-between text-[10px] font-mono text-[#5C3D2E]/70">
                     <span>150 (Intimate)</span>
-                    <span>1,500 (Banqueting)</span>
-                    <span>3,500 (Monolithic)</span>
+                    <span>1,500 (Grand)</span>
+                    <span>3,500 (Mega Celebration)</span>
                   </div>
                 </div>
 
@@ -367,30 +421,49 @@ export const ContactView: React.FC<ContactViewProps> = ({ onOpenInquiry }) => {
                 <div className="gsap-fade-up grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <label className="text-xs font-mono uppercase tracking-wider text-[#5C3D2E]">
-                      Target Calendar Date *
+                      Preferred Date *
                     </label>
                     <input
                       type="date"
-                      required
                       value={preferredDate}
-                      onChange={(e) => setPreferredDate(e.target.value)}
-                      className="w-full p-3 rounded-xl border border-[#C5A880]/50 bg-white text-xs font-mono text-[#2A1C16] focus:outline-none focus:ring-1 focus:ring-[#721B24]"
+                      onChange={(e) => {
+                        setPreferredDate(e.target.value);
+                        if (errors.preferredDate) {
+                          setErrors((prev) => ({ ...prev, preferredDate: '' }));
+                        }
+                      }}
+                      className={`w-full p-3 rounded-xl border bg-white text-xs font-mono text-[#2A1C16] focus:outline-none focus:ring-1 focus:ring-[#721B24] ${
+                        errors.preferredDate ? 'border-red-500' : 'border-[#C5A880]/50'
+                      }`}
                     />
+                    {errors.preferredDate && (
+                      <p className="text-xs text-red-600 font-sans mt-1">{errors.preferredDate}</p>
+                    )}
                   </div>
 
                   <div className="space-y-1.5">
                     <label className="text-xs font-mono uppercase tracking-wider text-[#5C3D2E]">
-                      Ritual / Reception Slot
+                      Event Timing *
                     </label>
                     <select
                       value={timeSlot}
-                      onChange={(e) => setTimeSlot(e.target.value)}
-                      className="w-full p-3 rounded-xl border border-[#C5A880]/50 bg-white text-xs font-sans text-[#2A1C16] focus:outline-none focus:ring-1 focus:ring-[#721B24]"
+                      onChange={(e) => {
+                        setTimeSlot(e.target.value);
+                        if (errors.timeSlot) {
+                          setErrors((prev) => ({ ...prev, timeSlot: '' }));
+                        }
+                      }}
+                      className={`w-full p-3 rounded-xl border bg-white text-xs font-sans text-[#2A1C16] focus:outline-none focus:ring-1 focus:ring-[#721B24] ${
+                        errors.timeSlot ? 'border-red-500' : 'border-[#C5A880]/50'
+                      }`}
                     >
-                      <option value="Twilight & Evening Gala (05:00 PM – Midnight)">Twilight & Evening Gala (05:00 PM – Midnight)</option>
-                      <option value="Auspicious Daytime / Twilight Pheras (10:00 AM – 04:00 PM)">Auspicious Daytime / Twilight Pheras (10:00 AM – 04:00 PM)</option>
-                      <option value="Full-Day Double Shift (10:00 AM to Midnight)">Full-Day Double Shift (10:00 AM to Midnight)</option>
+                      <option value="Evening Celebration (05:00 PM – Midnight)">Evening Celebration (05:00 PM – Midnight)</option>
+                      <option value="Morning / Afternoon Ceremony (10:00 AM – 04:00 PM)">Morning / Afternoon Ceremony (10:00 AM – 04:00 PM)</option>
+                      <option value="Full Day Event (10:00 AM to Midnight)">Full Day Event (10:00 AM to Midnight)</option>
                     </select>
+                    {errors.timeSlot && (
+                      <p className="text-xs text-red-600 font-sans mt-1">{errors.timeSlot}</p>
+                    )}
                   </div>
                 </div>
 
@@ -398,30 +471,48 @@ export const ContactView: React.FC<ContactViewProps> = ({ onOpenInquiry }) => {
                 <div className="gsap-fade-up grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <label className="text-xs font-mono uppercase tracking-wider text-[#5C3D2E]">
-                      Host Full Name *
+                      Your Name *
                     </label>
                     <input
                       type="text"
-                      required
-                      placeholder="e.g. Seth Harshvardhan Patel"
+                      placeholder="e.g. Rajesh Patel"
                       value={patronName}
-                      onChange={(e) => setPatronName(e.target.value)}
-                      className="w-full p-3 rounded-xl border border-[#C5A880]/50 bg-white text-xs font-sans text-[#2A1C16] focus:outline-none focus:ring-1 focus:ring-[#721B24]"
+                      onChange={(e) => {
+                        setPatronName(e.target.value);
+                        if (errors.patronName) {
+                          setErrors((prev) => ({ ...prev, patronName: '' }));
+                        }
+                      }}
+                      className={`w-full p-3 rounded-xl border bg-white text-xs font-sans text-[#2A1C16] focus:outline-none focus:ring-1 focus:ring-[#721B24] ${
+                        errors.patronName ? 'border-red-500' : 'border-[#C5A880]/50'
+                      }`}
                     />
+                    {errors.patronName && (
+                      <p className="text-xs text-red-600 font-sans mt-1">{errors.patronName}</p>
+                    )}
                   </div>
 
                   <div className="space-y-1.5">
                     <label className="text-xs font-mono uppercase tracking-wider text-[#5C3D2E]">
-                      Contact Number / WhatsApp *
+                      Phone Number / WhatsApp *
                     </label>
                     <input
                       type="tel"
-                      required
                       placeholder="+91 98765 43210"
                       value={contactNumber}
-                      onChange={(e) => setContactNumber(e.target.value)}
-                      className="w-full p-3 rounded-xl border border-[#C5A880]/50 bg-white text-xs font-mono text-[#2A1C16] focus:outline-none focus:ring-1 focus:ring-[#721B24]"
+                      onChange={(e) => {
+                        setContactNumber(e.target.value);
+                        if (errors.contactNumber) {
+                          setErrors((prev) => ({ ...prev, contactNumber: '' }));
+                        }
+                      }}
+                      className={`w-full p-3 rounded-xl border bg-white text-xs font-mono text-[#2A1C16] focus:outline-none focus:ring-1 focus:ring-[#721B24] ${
+                        errors.contactNumber ? 'border-red-500' : 'border-[#C5A880]/50'
+                      }`}
                     />
+                    {errors.contactNumber && (
+                      <p className="text-xs text-red-600 font-sans mt-1">{errors.contactNumber}</p>
+                    )}
                   </div>
                 </div>
 
@@ -431,20 +522,30 @@ export const ContactView: React.FC<ContactViewProps> = ({ onOpenInquiry }) => {
                   </label>
                   <input
                     type="email"
-                    placeholder="patel@familyoffice.in"
+                    placeholder="name@example.com"
                     value={patronEmail}
-                    onChange={(e) => setPatronEmail(e.target.value)}
-                    className="w-full p-3 rounded-xl border border-[#C5A880]/50 bg-white text-xs font-sans text-[#2A1C16] focus:outline-none focus:ring-1 focus:ring-[#721B24]"
+                    onChange={(e) => {
+                      setPatronEmail(e.target.value);
+                      if (errors.patronEmail) {
+                        setErrors((prev) => ({ ...prev, patronEmail: '' }));
+                      }
+                    }}
+                    className={`w-full p-3 rounded-xl border bg-white text-xs font-sans text-[#2A1C16] focus:outline-none focus:ring-1 focus:ring-[#721B24] ${
+                      errors.patronEmail ? 'border-red-500' : 'border-[#C5A880]/50'
+                    }`}
                   />
+                  {errors.patronEmail && (
+                    <p className="text-xs text-red-600 font-sans mt-1">{errors.patronEmail}</p>
+                  )}
                 </div>
 
                 <div className="gsap-fade-up space-y-1.5">
                   <label className="text-xs font-mono uppercase tracking-wider text-[#5C3D2E]">
-                    Bespoke Vision / Rigging Needs
+                    Special Requirements &amp; Setup Notes
                   </label>
                   <textarea
                     rows={2}
-                    placeholder="e.g. Traditional shehnai courtyard requirement, 2-day wedding setup, multi-tier buffet..."
+                    placeholder="e.g. Shehnai entrance, 2-day wedding setup, special food counters..."
                     value={specialRemarks}
                     onChange={(e) => setSpecialRemarks(e.target.value)}
                     className="w-full p-3 rounded-xl border border-[#C5A880]/50 bg-white text-xs font-sans text-[#2A1C16] focus:outline-none focus:ring-1 focus:ring-[#721B24]"
@@ -455,7 +556,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ onOpenInquiry }) => {
                   type="submit"
                   className="gsap-fade-up w-full py-4 rounded-full bg-[#721B24] hover:bg-[#58151C] text-[#FAF7F2] text-xs uppercase tracking-widest font-semibold border border-[#C5A880]/50 shadow-xl shadow-wine-900/30 transition-all cursor-pointer"
                 >
-                  Submit Official Estate Inscription
+                  Submit &amp; Open WhatsApp
                 </button>
               </form>
             )}

@@ -223,14 +223,14 @@ export const GalleryView: React.FC<GalleryViewProps> = ({ onOpenInquiry }) => {
             <div className="space-y-4 max-w-3xl xl:max-w-4xl">
               <div className="gsap-fade-up flex items-center gap-2 text-xs xl:text-sm font-mono text-[#721B24] tracking-[0.25em] uppercase">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#721B24]" />
-                VISUAL CHRONICLE
+                PHOTO GALLERY
               </div>
               <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-serif text-[#2A1C16] font-light leading-[1.04]">
-                <WordReveal text="THE VISUAL" />{' '}
-                <span className="italic font-normal"><WordReveal text="ARCHIVE" /></span>
+                <WordReveal text="THE EVENT" />{' '}
+                <span className="italic font-normal"><WordReveal text="GALLERY" /></span>
               </h1>
               <p className="gsap-fade-up text-sm sm:text-base xl:text-lg text-[#5C3D2E] font-sans font-light leading-relaxed">
-                Moments of grandeur captured across the sprawling lawns, crystal ceilings, and sacred waters of Asopalav Greens.
+                Explore real wedding celebrations, grand stage setups, and evening decor across our banquet hall and lush party plot.
               </p>
             </div>
 
@@ -317,20 +317,20 @@ export const GalleryView: React.FC<GalleryViewProps> = ({ onOpenInquiry }) => {
         </div>
       </section>
 
-      {/* Floating Concierge Action Banner — Natural Cream bg-[#FAF7F2] */}
+      {/* Floating Action Banner — Natural Cream bg-[#FAF7F2] */}
       <section className="w-full bg-[#FAF7F2] py-14 sm:py-20 xl:py-24">
         <div className="px-4 sm:px-8 xl:px-12 max-w-7xl xl:max-w-[1440px] 2xl:max-w-[1680px] mx-auto">
           <div className="p-8 sm:p-12 xl:p-16 rounded-3xl xl:rounded-[36px] bg-[#721B24] text-[#FAF7F2] border border-[#C5A880]/50 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 xl:gap-8 text-center md:text-left">
             <div className="space-y-2 xl:space-y-3 max-w-2xl xl:max-w-3xl">
               <div className="inline-flex items-center gap-2 text-xs xl:text-sm font-mono text-[#D4AF37] tracking-widest uppercase">
                 <Sparkles className="w-3.5 h-3.5" />
-                BESPOKE WEDDING & EVENT CURATIONS
+                WEDDING &amp; EVENT CELEBRATIONS
               </div>
               <h3 className="text-2xl sm:text-4xl xl:text-5xl font-serif font-light leading-snug">
-                Envisioning a Similar Theme for Your Celebration?
+                Planning a Wedding or Celebration?
               </h3>
               <p className="text-xs sm:text-sm xl:text-base text-[#F3EDE2]/90 font-light">
-                Connect with our master wedding planners to explore custom floral canopies, crystal chandeliers, and banquet staging.
+                Connect with our team to explore venue layouts, stage designs, lighting setups, and date availability.
               </p>
             </div>
 
@@ -339,7 +339,7 @@ export const GalleryView: React.FC<GalleryViewProps> = ({ onOpenInquiry }) => {
                 onClick={() => onOpenInquiry()}
                 className="px-7 xl:px-9 py-3.5 xl:py-4 rounded-full bg-[#FAF7F2] text-[#721B24] hover:bg-[#F3EDE2] text-xs xl:text-sm uppercase tracking-widest font-semibold transition-all shadow-xl hover:scale-105 cursor-pointer"
               >
-                Request Venue Viewing
+                Schedule Venue Visit
               </button>
               <a
                 href="tel:+918155089958"

@@ -19,31 +19,31 @@ export const FAQS: FAQItem[] = [
   {
     question: 'How can I book a banquet hall or lawn at Asopalav Greens?',
     answer:
-      'You can get in touch with our estate concierge directly by calling +91 81550 89958 / +91 98985 63788, sending a WhatsApp message, or completing the online inquiry dossier. Our booking concierge is available daily during office hours (9:30 AM – 7:00 PM, with 24/7 digital and phone inquiry support) to check auspicious dates and reserve your celebration.',
+      'You can reach our team directly by calling +91 81550 89958 / +91 98985 63788, sending a WhatsApp message, or submitting an online inquiry. Our team is available daily from 9:30 AM to 7:00 PM (with round-the-clock call and WhatsApp support) to check auspicious dates and guide you through the booking process.',
     category: 'Reservations',
   },
   {
-    question: 'What are the key amenities available at Asopalav Greens Banquet & Party Plot?',
+    question: 'What amenities and facilities are available at Asopalav Greens?',
     answer:
-      'The estate provides world-class amenities including Wheelchair Accessible In-Car Parking, Wheelchair Accessible Entrances and Exits, twin luxury en-suite Bridal Sanctuaries with private vanity salons, 100% dual 500 kVA synchronized DG power backup, 500+ vehicle paved valet motor court, 6,000 sq. ft. commercial catering commissary yard, and 28-foot heavy rigging truss infrastructure.',
+      'Asopalav Greens provides comprehensive amenities for weddings and celebrations, including Wheelchair Accessible Parking, Entrances, and Exits, 10 luxury air-conditioned en-suite rooms for family preparation, 100% dual DG power backup, Valet Parking for 500+ cars, dedicated catering and cooking areas, and High-Capacity Power & Rigging support.',
     category: 'Amenities',
   },
   {
     question: 'What is the typical size and capacity of the event spaces?',
     answer:
-      'Asopalav Greens features two distinct event spaces: The Banquet spans 30,000 sq. ft. with 750 spacious seating capacity, while The Lawn party plot covers 9,000 sq. ft. with 1,200 lawn seating capacity. Both spaces feature 10 luxury air-conditioned rooms, ample on-site guest parking, and dedicated valet service during main events. Venues can be reserved independently or together for multi-day weddings.',
+      'Asopalav Greens features two versatile event spaces: The Banquet offers 9,000 sq. ft. of indoor pillarless space with seating for up to 750 guests, while The Lawn party plot covers 30,000 sq. ft. with 1,200 lawn seating capacity. Both spaces feature 10 luxury air-conditioned rooms, ample on-site guest parking, and valet service during main events. Venues can be reserved independently or together for multi-day weddings.',
     category: 'Venues',
   },
   {
     question: 'Can I personally visit Asopalav Greens Banquet & Party Plot before booking?',
     answer:
-      'Yes, absolutely. We warmly welcome prospective couples, families, and wedding planners for private curated walk-throughs to personally inspect the grounds, lighting infrastructure, banquet halls, and backstage amenities. Walk-throughs are hosted daily from 9:30 AM to 7:00 PM by prior appointment.',
+      'Yes, absolutely. We warmly welcome families, couples, and wedding planners to visit the venue in person, explore the banquet hall and lawns, and inspect our guest amenities. Walk-throughs are hosted daily from 9:30 AM to 7:00 PM by prior appointment.',
     category: 'Visits',
   },
   {
     question: 'Can I customise the decoration, mandap, and catering setup?',
     answer:
-      'Yes. Asopalav Greens allows complete customization of event decor, floral architecture, concert lighting, and themed mandaps. We provide pre-decorated setup options as well as full freedom to collaborate with your chosen luxury wedding decorators and caterers.',
+      'Yes. Asopalav Greens allows complete customization of event decor, floral setups, concert lighting, and mandaps. We provide pre-decorated setup options as well as full freedom to collaborate with your chosen wedding decorators and caterers.',
     category: 'Customization',
   },
   {
@@ -107,7 +107,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenInquiry, className
         <div className="text-center space-y-4 xl:space-y-5 mb-12 sm:mb-16 xl:mb-20">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 xl:px-4 xl:py-2 rounded-full bg-[#FAF7F2] border border-[#C5A880]/40 text-[#721B24] text-xs xl:text-sm font-mono tracking-widest uppercase shadow-xs">
             <HelpCircle className="w-3.5 h-3.5" />
-            <span>ESTATE PROTOCOLS & INQUIRIES</span>
+            <span>FREQUENTLY ASKED QUESTIONS</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl xl:text-6xl 2xl:text-7xl font-serif text-[#2A1C16] font-light leading-tight">
@@ -116,7 +116,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenInquiry, className
           </h2>
 
           <p className="max-w-2xl xl:max-w-3xl mx-auto text-sm sm:text-base xl:text-lg text-[#5C3D2E] font-sans font-light leading-relaxed">
-            Essential information regarding bookings, spatial capacities, wheelchair accessibility, and custom event curation at Asopalav Greens.
+            Essential information regarding bookings, guest capacities, accessibility, and celebration arrangements at Asopalav Greens.
           </p>
 
           {/* Accessibility badge */}
@@ -187,10 +187,10 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenInquiry, className
             HAVE ADDITIONAL QUESTIONS?
           </div>
           <div className="font-serif text-lg sm:text-xl xl:text-2xl font-light">
-            Speak directly with our senior estate curators
+            Speak directly with our event and booking team
           </div>
           <div className="text-xs xl:text-sm font-mono text-[#FAF7F2]/70">
-            Sevasi - Canal Rd, opp. Athletes Arena, Vadodara • Daily 9:30 AM – 7:00 PM
+          <a className="text-[#FAF7F2]/70 hover:text-[#ffffff] transition-all duration-300" target="_blank" rel="noopener noreferrer" href="https://maps.app.goo.gl/7GF5DqUVsYPV5fwn7">Sevasi - Canal Rd, opp. Athletes Arena, Vadodara</a> • Daily 9:30 AM – 7:00 PM
           </div>
         </div>
 

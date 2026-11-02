@@ -160,7 +160,7 @@ export const VenueDetailView: React.FC<VenueDetailViewProps> = ({
             </div>
 
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-4 sm:py-1.5 rounded-full bg-[#721B24]/90 backdrop-blur-md text-[9px] sm:text-xs xl:text-sm font-mono tracking-widest text-[#FAF7F2] uppercase font-semibold text-right">
-              {isBanquet ? '30,000 SQ. FT.' : 'PARTY PLOT 9,000 SQ. FT.'}
+              {isBanquet ? '9,000 SQ. FT.' : 'PARTY PLOT 30,000 SQ. FT.'}
             </div>
           </div>
 
@@ -176,9 +176,9 @@ export const VenueDetailView: React.FC<VenueDetailViewProps> = ({
               </h1>
 
               <div className="hero-stagger-text inline-flex flex-wrap items-center gap-2 py-1 px-3 sm:py-1.5 sm:px-4 xl:px-5 xl:py-2 rounded-full bg-[#FAF7F2]/10 backdrop-blur-md border border-[#C5A880]/30 text-[10px] sm:text-xs xl:text-sm font-mono tracking-wider sm:tracking-widest text-[#D4AF37] uppercase">
-                <span>{isBanquet ? 'Pillarless Indoor Sanctuary' : 'Manicured Open-Air Grounds'}</span>
+                <span>{isBanquet ? 'Pillarless Indoor Banquet' : 'Manicured Open-Air Lawn'}</span>
                 <span className="text-[#FAF7F2]/40">•</span>
-                <span className="text-[#FAF7F2]">{isBanquet ? '30,000 Sq. Ft.' : 'Party Plot 9,000 Sq. Ft.'}</span>
+                <span className="text-[#FAF7F2]">{isBanquet ? '9,000 Sq. Ft.' : 'Party Plot 30,000 Sq. Ft.'}</span>
               </div>
             </div>
 
@@ -222,7 +222,7 @@ export const VenueDetailView: React.FC<VenueDetailViewProps> = ({
                       <div className="flex items-start gap-3 pb-3 border-b border-[#C5A880]/20">
                         <CheckCircle2 className="w-4 h-4 xl:w-5 xl:h-5 text-[#721B24] mt-0.5 flex-none" />
                         <div>
-                          <div className="font-semibold text-[#2A1C16]">30,000 sq.ft</div>
+                          <div className="font-semibold text-[#2A1C16]">9,000 sq.ft</div>
                           <div className="text-xs xl:text-sm text-[#5C3D2E]">Grand indoor banquet hall footprint</div>
                         </div>
                       </div>
@@ -250,8 +250,8 @@ export const VenueDetailView: React.FC<VenueDetailViewProps> = ({
                       <div className="flex items-start gap-3">
                         <CheckCircle2 className="w-4 h-4 xl:w-5 xl:h-5 text-[#721B24] mt-0.5 flex-none" />
                         <div>
-                          <div className="font-semibold text-[#2A1C16]">Vallet parking available in main event</div>
-                          <div className="text-xs xl:text-sm text-[#5C3D2E]">Dedicated valet concierge for primary celebrations</div>
+                          <div className="font-semibold text-[#2A1C16]">Valet parking available in main event</div>
+                          <div className="text-xs xl:text-sm text-[#5C3D2E]">Dedicated valet parking service for primary celebrations</div>
                         </div>
                       </div>
                     </>
@@ -260,7 +260,7 @@ export const VenueDetailView: React.FC<VenueDetailViewProps> = ({
                       <div className="flex items-start gap-3 pb-3 border-b border-[#C5A880]/20">
                         <CheckCircle2 className="w-4 h-4 xl:w-5 xl:h-5 text-[#721B24] mt-0.5 flex-none" />
                         <div>
-                          <div className="font-semibold text-[#2A1C16]">Party plot :- 9,000 sq. ft</div>
+                          <div className="font-semibold text-[#2A1C16]">Party plot :- 30,000 sq. ft</div>
                           <div className="text-xs xl:text-sm text-[#5C3D2E]">Lush landscaped open-air celebration grounds</div>
                         </div>
                       </div>
@@ -288,8 +288,8 @@ export const VenueDetailView: React.FC<VenueDetailViewProps> = ({
                       <div className="flex items-start gap-3">
                         <CheckCircle2 className="w-4 h-4 xl:w-5 xl:h-5 text-[#721B24] mt-0.5 flex-none" />
                         <div>
-                          <div className="font-semibold text-[#2A1C16]">Vallet parking available in main event</div>
-                          <div className="text-xs xl:text-sm text-[#5C3D2E]">Dedicated valet concierge for primary celebrations</div>
+                          <div className="font-semibold text-[#2A1C16]">Valet parking available in main event</div>
+                          <div className="text-xs xl:text-sm text-[#5C3D2E]">Dedicated valet parking service for primary celebrations</div>
                         </div>
                       </div>
                     </>
@@ -387,7 +387,7 @@ export const VenueDetailView: React.FC<VenueDetailViewProps> = ({
                 Reserve {venue.name}
               </h3>
               <p className="text-xs sm:text-sm xl:text-base 2xl:text-lg text-[#F3EDE2]/80 font-sans font-light leading-relaxed">
-                We host a limited number of signature celebrations each season to maintain pristine grounds and ensure undivided attention.
+                We host a limited number of weddings and events each season to ensure pristine grounds and dedicated hospitality for your family.
               </p>
             </div>
 
@@ -420,7 +420,7 @@ export const VenueDetailView: React.FC<VenueDetailViewProps> = ({
                   {otherVenue.name}
                 </div>
                 <div className="text-[11px] xl:text-xs font-mono text-[#5C3D2E]/70">
-                  {otherVenue.slug === 'banquet' ? '30,000 Sq. Ft. • 750 Seating' : 'Party plot 9,000 Sq. Ft. • 1,200 Seating'}
+                  {otherVenue.slug === 'banquet' ? '9,000 Sq. Ft. • 750 Seating' : 'Party plot 30,000 Sq. Ft. • 1,200 Seating'}
                 </div>
               </div>
             </button>
@@ -444,7 +444,7 @@ export const VenueDetailView: React.FC<VenueDetailViewProps> = ({
                   {otherVenue.name}
                 </div>
                 <div className="text-[11px] xl:text-xs font-mono text-[#5C3D2E]/70">
-                  {otherVenue.slug === 'banquet' ? '30,000 Sq. Ft. • 750 Seating' : 'Party plot 9,000 Sq. Ft. • 1,200 Seating'}
+                  {otherVenue.slug === 'banquet' ? '9,000 Sq. Ft. • 750 Seating' : 'Party plot 30,000 Sq. Ft. • 1,200 Seating'}
                 </div>
               </div>
               <div className="w-12 h-12 xl:w-14 xl:h-14 rounded-full border border-[#C5A880]/40 flex items-center justify-center group-hover:bg-[#721B24] group-hover:border-[#721B24] transition-all bg-[#FAF7F2]">

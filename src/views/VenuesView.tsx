@@ -127,19 +127,19 @@ export const VenuesView: React.FC<VenuesViewProps> = ({
             <div className="space-y-4 max-w-3xl xl:max-w-5xl">
               <div className="masthead-element flex items-center gap-3 text-xs xl:text-sm font-mono text-[#721B24] tracking-[0.25em] uppercase">
                 <span className="w-2 h-2 rounded-full bg-[#721B24]" />
-                ESTATE REPERTOIRE • VOLUME 2026–2027
+                OUR VENUES • THE SPACES
               </div>
 
               <h1 className="masthead-element text-4xl sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-serif text-[#2A1C16] font-light leading-[1.03] tracking-tight">
                 THE SPACES
                 <span className="block italic font-normal text-[#5C3D2E] text-3xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl mt-1">
-                  &amp; Architectural Sanctums
+                  &amp; Event Venues
                 </span>
               </h1>
 
               <p className="masthead-element text-base sm:text-lg xl:text-xl 2xl:text-2xl text-[#5C3D2E] font-sans font-light leading-relaxed max-w-2xl xl:max-w-4xl">
-                Two premier spaces shaped for monumental indoor banquets and open-air celebrations.
-                The Banquet (30,000 sq. ft.) and The Lawn (9,000 sq. ft. party plot).
+                Two premier spaces designed for grand indoor banquets and starlit open-air weddings:
+                The Banquet (9,000 sq. ft.) and The Lawn (30,000 sq. ft. party plot).
               </p>
             </div>
 
@@ -210,7 +210,7 @@ export const VenuesView: React.FC<VenuesViewProps> = ({
                       </div>
 
                       <span className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3.5 sm:py-1.5 xl:px-4 xl:py-2 rounded-full bg-[#721B24]/90 backdrop-blur-md text-[#FAF7F2] text-[9px] sm:text-[11px] xl:text-xs font-mono tracking-wider border border-[#C5A880]/30 font-medium text-right">
-                        {isBanquet ? '30,000 SQ. FT.' : 'PARTY PLOT 9,000 SQ. FT.'}
+                        {isBanquet ? '9,000 SQ. FT.' : 'PARTY PLOT 30,000 SQ. FT.'}
                       </span>
                     </div>
 
@@ -265,7 +265,7 @@ export const VenuesView: React.FC<VenuesViewProps> = ({
                         <>
                           <div className="flex items-center gap-3">
                             <span className="w-2.5 h-2.5 rounded-full bg-[#721B24] flex-none" />
-                            <span><strong className="font-semibold">30,000 sq.ft</strong></span>
+                            <span><strong className="font-semibold">9,000 sq.ft</strong></span>
                           </div>
                           <div className="flex items-center gap-3">
                             <span className="w-2.5 h-2.5 rounded-full bg-[#721B24] flex-none" />
@@ -288,7 +288,7 @@ export const VenuesView: React.FC<VenuesViewProps> = ({
                         <>
                           <div className="flex items-center gap-3">
                             <span className="w-2.5 h-2.5 rounded-full bg-[#721B24] flex-none" />
-                            <span>Party plot :- <strong className="font-semibold">9,000 sq. ft</strong></span>
+                            <span>Party plot :- <strong className="font-semibold">30,000 sq. ft</strong></span>
                           </div>
                           <div className="flex items-center gap-3">
                             <span className="w-2.5 h-2.5 rounded-full bg-[#721B24] flex-none" />
@@ -367,18 +367,18 @@ export const VenuesView: React.FC<VenuesViewProps> = ({
                 EXCLUSIVE PRIVILEGE
               </div>
               <h3 className="text-2xl sm:text-3xl xl:text-4xl 2xl:text-5xl font-serif font-light text-[#FAF7F2]">
-                Combined Estate Booking Repertoire
+                Combined Banquet &amp; Lawn Booking
               </h3>
               <p className="text-xs sm:text-sm xl:text-base 2xl:text-lg text-[#F3EDE2]/80 font-sans font-light leading-relaxed">
-                Reserve the entire estate grounds for complete celebration privacy. Enjoy seamless indoor-outdoor event choreography, dedicated catering commissaries, private host suites, and unified guest hospitality.
+                Book both our indoor banquet and outdoor lawn for complete event exclusivity. Enjoy seamless indoor-outdoor flow, dedicated catering setups, private family rooms, and unified guest hospitality.
               </p>
             </div>
 
             <button
-              onClick={() => onOpenInquiry('Combined Estate (Banquet & Lawn)')}
+              onClick={() => onOpenInquiry('Combined Venue (Banquet & Lawn)')}
               className="shrink-0 px-8 py-3.5 xl:px-10 xl:py-4 rounded-full bg-[#721B24] hover:bg-[#58151C] text-[#FAF7F2] text-xs xl:text-sm uppercase tracking-widest font-semibold border border-[#C5A880]/40 transition-all cursor-pointer shadow-xl hover:scale-105"
             >
-              Inquire Combined Estate
+              Inquire Combined Booking
             </button>
           </div>
         </div>
