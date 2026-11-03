@@ -14,7 +14,7 @@ test('Estate Data: Venues Integrity', () => {
     assert.ok(venue.areaSqFt > 0, 'Area must be greater than zero');
     assert.ok(venue.capacityFloating > 0, 'Floating capacity must be greater than zero');
     assert.ok(venue.capacitySeated > 0, 'Seated capacity must be greater than zero');
-    assert.ok(venue.heroImage.startsWith('https://'), 'Hero image must be secure URL');
+    assert.ok(venue.heroImage.startsWith('https://') || venue.heroImage.startsWith('/'), 'Hero image must be secure URL or local asset');
     assert.strictEqual(venue.diptych.length, 2, 'Diptych must have exactly two photo views');
     assert.ok(venue.specs.length >= 5, 'Venue must have at least 5 technical specifications');
   }
