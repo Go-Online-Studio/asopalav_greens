@@ -247,7 +247,7 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
               </div>
 
               {/* Minimal Bottom-Left Content (Aligned with reference design) */}
-              <div className="absolute bottom-6 sm:bottom-10 md:bottom-14 left-5 sm:left-10 md:left-14 right-5 sm:right-14 z-10 max-w-3xl space-y-2 sm:space-y-3 pointer-events-auto">
+              <div className="absolute bottom-12 md:bottom-14 left-5 sm:left-10 md:left-14 right-5 sm:right-14 z-10 max-w-3xl space-y-2 sm:space-y-3 pointer-events-auto">
                 {/* Subtitle / Eyebrow */}
                 <p className="text-[11px] sm:text-xs md:text-sm font-mono tracking-[0.2em] sm:tracking-[0.25em] uppercase text-[#D4AF37] font-medium flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] shrink-0" />
